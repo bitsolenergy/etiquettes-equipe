@@ -1,6 +1,6 @@
 // Hors ligne : l'application est gardée en cache après la première ouverture.
 // Les appels au registre commun (autre domaine) ne passent jamais par le cache.
-const CACHE = "etiquettes-equipe-v2";
+const CACHE = "etiquettes-equipe-v3";
 const FICHIERS = ["./", "index.html", "config.js", "manifest.webmanifest", "icon-192.png", "icon-512.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FICHIERS))); self.skipWaiting(); });
 self.addEventListener("activate", e => {
