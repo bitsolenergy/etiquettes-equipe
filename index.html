@@ -1,0 +1,2371 @@
+<!doctype html>
+<!-- © 2026 Aibid. Tous droits réservés. Reproduction, modification ou diffusion interdites sans autorisation écrite de l'auteur. -->
+<html lang="fr">
+<meta charset="utf-8">
+<title>Étiquettes fagot — Équipe</title>
+<meta name="author" content="Aibid">
+<meta name="copyright" content="© 2026 Aibid. Tous droits réservés.">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111F">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Étiquettes">
+<style>
+:root{
+  --bg:#07111F; --bg2:#0A1626;
+  --surf:#0D1B2D; --surf2:#122338; --surf3:#17304B; --sunk:#08131F;
+  --line:rgba(148,163,184,.14); --line2:rgba(148,163,184,.26); --line3:rgba(148,163,184,.40);
+  --ink:#F8FAFC; --ink2:#CBD5E1; --ink3:#B2BFD0; --ink4:#8B9AAF;
+  --bleu:#0878FF; --bleu-ink:#5AAEFF; --bleu-soft:rgba(8,120,255,.16);
+  --or:#FF791F; --or-ink:#FFA463; --or-soft:rgba(255,121,31,.15);
+  --ok:#22C55E; --ok-soft:rgba(34,197,94,.14);
+  --warn:#F5B83D; --warn-soft:rgba(245,184,61,.13);
+  --stop:#F05252; --stop-soft:rgba(240,82,82,.13);
+  --g-or:linear-gradient(135deg,#FF8E3C 0%,#F2600C 100%);
+  --g-bleu:linear-gradient(135deg,#2491FF 0%,#0560E0 100%);
+  --g-surf:linear-gradient(180deg,rgba(23,48,75,.55) 0%,rgba(13,27,45,.0) 100%);
+  --ombre:0 1px 0 rgba(255,255,255,.04) inset,0 10px 30px -12px rgba(0,0,0,.6);
+  --mono:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace;
+  --ui:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --r:20px; --r2:16px; --r3:12px;
+  --nav-h:66px; --dock-h:78px;
+  --safe-b:env(safe-area-inset-bottom,0px);
+  /* noms conservés : utilisés par le HTML généré par le script */
+  --acc:var(--or); --acc-ink:var(--or-ink); --acc-soft:var(--or-soft);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;background:var(--bg);scroll-padding-top:90px;scroll-padding-bottom:160px}
+body{margin:0;min-height:100vh;color:var(--ink);font-family:var(--ui);font-size:16px;line-height:1.5;
+  background:radial-gradient(900px 420px at 50% -180px,rgba(8,120,255,.20),transparent 70%),var(--bg);background-attachment:fixed;
+  overflow-x:hidden}
+button{font:inherit;color:inherit}
+svg.i{width:20px;height:20px;flex:0 0 auto;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+svg.i.sm{width:16px;height:16px}
+svg.i.lg{width:26px;height:26px;stroke-width:1.8}
+svg.i.xl{width:34px;height:34px;stroke-width:1.7}
+.mono,.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+[hidden]{display:none!important}
+
+/* ---------- structure ---------- */
+.app{max-width:560px;margin:0 auto;padding:calc(10px + env(safe-area-inset-top,0px)) 16px 0}
+.ecran{display:none;padding-bottom:calc(var(--nav-h) + var(--safe-b) + 28px);animation:entree .22s ease-out}
+.ecran.actif{display:block}
+body.avec-dock .ecran{padding-bottom:calc(var(--dock-h) + var(--safe-b) + 28px)}
+@keyframes entree{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---------- en-têtes ---------- */
+.barre{display:flex;align-items:center;gap:12px;min-height:60px;margin:0 0 14px}
+.barre h2{margin:0;font-size:20px;font-weight:700;letter-spacing:-.015em;line-height:1.2}
+.barre p{margin:2px 0 0;font-size:13px;color:var(--ink3);line-height:1.3}
+.barre>div{min-width:0;flex:1}
+.ico-btn{width:44px;height:44px;flex:0 0 auto;border-radius:14px;border:1px solid var(--line2);background:var(--surf);
+  display:grid;place-items:center;cursor:pointer;color:var(--ink2);transition:background .15s,border-color .15s}
+.ico-btn:active{transform:scale(.96)}
+.ico-btn.retour{color:var(--or)}
+.barre .badge{flex:0 0 auto}
+
+.hero{position:relative;border-radius:24px;padding:18px 18px 20px;margin:4px 0 14px;overflow:hidden;
+  background:linear-gradient(160deg,#10243C 0%,#0B192B 60%,#0A1626 100%);border:1px solid var(--line2);box-shadow:var(--ombre)}
+.hero::after{content:"";position:absolute;right:-60px;top:-80px;width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle,rgba(8,120,255,.28),transparent 68%);pointer-events:none}
+.hero-top{display:flex;align-items:flex-start;gap:14px;position:relative;z-index:1}
+.hero-t{flex:1;min-width:0}
+.hero h1{margin:2px 0 0;font-size:23px;font-weight:800;letter-spacing:-.02em;line-height:1.15}
+.hero h1 em{font-style:normal;color:var(--bleu-ink)}
+.hero p{margin:8px 0 0;color:var(--ink2);font-size:14px;line-height:1.45;position:relative;z-index:1}
+.logo{width:52px;height:52px;border-radius:16px;background:var(--g-or);display:grid;place-items:center;color:#fff;flex:0 0 auto;
+  box-shadow:0 8px 22px -6px rgba(242,96,12,.55),0 0 0 1px rgba(255,255,255,.12) inset}
+.logo svg.i{width:26px;height:26px}
+
+/* ---------- tuiles d'accueil ---------- */
+.tuiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.tuile{position:relative;text-align:left;min-height:132px;padding:16px;border-radius:var(--r);border:1px solid var(--line2);
+  background:var(--surf);cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;gap:12px;overflow:hidden;
+  box-shadow:var(--ombre);transition:transform .12s ease}
+.tuile:active{transform:scale(.98)}
+.tuile b{display:block;font-size:17px;font-weight:700;line-height:1.2;letter-spacing:-.01em}
+.tuile small{display:block;font-size:12.5px;color:var(--ink3);margin-top:3px;line-height:1.3}
+.tuile .fl{position:absolute;right:14px;bottom:16px;opacity:.85}
+.tuile .t-ico{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:var(--surf3);color:var(--bleu-ink)}
+.tuile.t-or{background:var(--g-or);border-color:transparent;box-shadow:0 14px 30px -14px rgba(242,96,12,.7)}
+.tuile.t-bleu{background:var(--g-bleu);border-color:transparent;box-shadow:0 14px 30px -14px rgba(8,120,255,.7)}
+.tuile.t-or .t-ico,.tuile.t-bleu .t-ico{background:rgba(255,255,255,.18);color:#fff}
+.tuile.t-or small,.tuile.t-bleu small{color:rgba(255,255,255,.85)}
+.tuile b,.tuile small{padding-right:18px}
+
+/* ---------- cartes ---------- */
+.carte,.card{background:var(--surf);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin:0 0 12px;min-width:0;
+  box-shadow:var(--ombre);background-image:var(--g-surf)}
+.carte-t{display:flex;align-items:center;gap:11px;margin:0 0 14px;font-size:15.5px;font-weight:700;letter-spacing:-.005em}
+.carte-t .fin{margin-left:auto}
+.chip{width:38px;height:38px;border-radius:12px;background:var(--or-soft);color:var(--or);display:grid;place-items:center;flex:0 0 auto}
+.chip.bleu{background:var(--bleu-soft);color:var(--bleu-ink)}
+.chip.vert{background:var(--ok-soft);color:var(--ok)}
+.refpuce{margin-left:auto;font-family:var(--mono);font-size:15px;font-weight:700;color:var(--or-ink);background:var(--sunk);
+  border:1px solid var(--line2);border-radius:10px;padding:5px 11px;white-space:nowrap}
+
+/* ---------- champs ---------- */
+label{display:block;font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);margin:0 0 7px;font-weight:700}
+input{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--line2);border-radius:var(--r3);
+  background:var(--sunk);color:var(--ink);min-height:50px;transition:border-color .15s,box-shadow .15s}
+input::placeholder{color:var(--ink4)}
+input:focus{outline:none;border-color:var(--bleu);box-shadow:0 0 0 3px rgba(8,120,255,.28)}
+:focus-visible{outline:3px solid var(--bleu-ink);outline-offset:2px}
+input:focus-visible{outline:none}
+.field{margin-bottom:14px;min-width:0}
+.field:last-child{margin-bottom:0}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.g2>.field,.g3>.field{margin-bottom:0}
+.g2+.field,.g2+.g2,.field+.g2,.g3+.field{margin-top:14px}
+
+/* ---------- boutons ---------- */
+.btn{font:inherit;font-size:15px;font-weight:700;padding:0 16px;min-height:50px;border-radius:var(--r3);
+  border:1px solid var(--line2);background:var(--surf2);color:var(--ink);cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:transform .1s,background .15s,opacity .15s;white-space:nowrap}
+.btn:active{transform:scale(.98)}
+.btn[disabled]{opacity:.45;cursor:default;transform:none}
+.btn.sm{font-size:14px;min-height:44px;padding:0 14px;border-radius:11px}
+.btn.full{width:100%}
+.btn.cu,.btn.or{background:var(--g-or);border-color:transparent;color:#fff;box-shadow:0 10px 24px -10px rgba(242,96,12,.75)}
+.btn.bleu{background:var(--g-bleu);border-color:transparent;color:#fff;box-shadow:0 10px 24px -10px rgba(8,120,255,.75)}
+.btn.lg{min-height:58px;font-size:17px;border-radius:16px}
+.btn.fantome{background:transparent}
+.btn.danger{border-color:rgba(240,82,82,.55);color:#FF8A8A;background:var(--stop-soft)}
+.btn .fl{margin-left:auto}
+.btnrow{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.btnrow .btn{flex:1 1 auto}
+
+.sep{border-top:1px solid var(--line);margin:16px 0 14px}
+
+/* pas à pas (− valeur +) */
+.pas{display:flex;gap:6px}
+.pas input{text-align:center;min-width:0;padding-left:4px;padding-right:4px;font-size:18px;font-weight:700}
+.pas .btn{flex:0 0 46px;padding:0;font-size:22px;font-weight:600;min-height:50px;color:var(--or-ink)}
+
+/* listes déroulantes devenues boutons */
+.puces{display:flex;flex-wrap:wrap;gap:8px}
+.puce{font:inherit;font-family:var(--mono);font-size:15px;font-weight:700;min-height:48px;min-width:54px;padding:0 13px;
+  border-radius:var(--r3);border:1px solid var(--line2);background:var(--sunk);color:var(--ink);cursor:pointer;flex:1 0 auto;
+  transition:background .15s,border-color .15s}
+.puces.grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(62px,1fr))}
+.puces.grille .puce{padding:0 4px;min-width:0}
+.puce.on{background:var(--g-or);border-color:transparent;color:#fff;box-shadow:0 6px 16px -6px rgba(242,96,12,.7)}
+.puce:active{transform:scale(.97)}
+.selbtn{width:100%;font:inherit;font-family:var(--mono);font-size:18px;font-weight:700;min-height:54px;padding:0 30px 0 14px;text-align:left;
+  border-radius:var(--r3);border:1px solid var(--line2);background:var(--sunk);color:var(--ink);cursor:pointer;position:relative}
+.selbtn::after{content:"";position:absolute;right:14px;top:50%;width:8px;height:8px;border-right:2px solid var(--or);border-bottom:2px solid var(--or);transform:translateY(-70%) rotate(45deg)}
+@media(max-width:380px){.g3{gap:7px}.selbtn{font-size:16px;padding-left:10px;padding-right:24px}.selbtn::after{right:10px}}
+
+/* ---------- messages ---------- */
+.verdict{border-radius:var(--r2);padding:13px 15px;margin-top:14px;font-size:14px;border:1px solid var(--line2);
+  background:var(--surf2);line-height:1.5;color:var(--ink2)}
+.verdict.ok{background:var(--ok-soft);border-color:rgba(34,197,94,.30)}
+.verdict.warn{background:var(--warn-soft);border-color:rgba(245,184,61,.32)}
+.verdict.stop{background:var(--stop-soft);border-color:rgba(240,82,82,.38)}
+.verdict b{font-weight:800;color:var(--ink)}
+.verdict.ok b{color:#4ADE80} .verdict.warn b{color:var(--warn)} .verdict.stop b{color:#FF7A7A}
+.verdict ul{margin:6px 0 0;padding-left:18px}
+.verdict li{margin:3px 0}
+.verdict .btnrow{margin-top:12px}
+.note{font-size:13px;color:var(--ink3);margin:12px 0 0;line-height:1.5}
+.note.repli{background:var(--sunk);border:1px solid var(--line);border-radius:var(--r3);padding:11px 12px;cursor:pointer;color:var(--ink2)}
+.aide{width:30px;height:30px;border-radius:50%;border:1px solid var(--line2);background:var(--surf2);color:var(--ink2);
+  font:inherit;font-size:14px;font-weight:800;cursor:pointer;margin-top:12px;padding:0}
+.choix{display:flex;align-items:center;gap:12px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.10)}
+.choix>div{flex:1;min-width:0}
+.choix strong{display:block;font-size:17px;color:var(--ink)}
+.choix span{display:block;font-size:12.5px;color:var(--ink2)}
+.contenu{font-family:var(--mono);font-size:13.5px;color:var(--or-ink);background:var(--sunk);
+  border:1px solid var(--line2);border-radius:var(--r3);padding:12px 13px;overflow-wrap:anywhere;word-break:normal}
+
+/* ---------- état de l'imprimante ---------- */
+.etat{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:700}
+.pastille{width:10px;height:10px;border-radius:50%;background:var(--ink4);flex:0 0 auto}
+.pastille.ok{background:var(--ok);box-shadow:0 0 0 4px var(--ok-soft)}
+.pastille.att{background:var(--warn);box-shadow:0 0 0 4px var(--warn-soft);animation:pouls 1.2s ease-in-out infinite}
+@keyframes pouls{50%{box-shadow:0 0 0 7px rgba(245,184,61,.05)}}
+.etat small{display:block;font-weight:500;color:var(--ink3);font-size:12.5px;font-family:var(--mono)}
+
+.imp-carte{display:flex;align-items:center;gap:14px}
+.imp-vis{width:64px;height:64px;border-radius:18px;flex:0 0 auto;display:grid;place-items:center;color:var(--ink2);
+  background:radial-gradient(circle at 30% 25%,#1E3A5C,#0B1828);border:1px solid var(--line2)}
+.imp-carte .txt{flex:1;min-width:0}
+.imp-carte .txt b{display:block;font-size:15px}
+.imp-carte .mir-sub{display:block;font-family:var(--mono);font-size:12.5px;color:var(--ink3);overflow-wrap:anywhere}
+.mir-etat{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;margin-bottom:2px}
+.mir-etat.ok{color:#4ADE80}
+.imp-carte .btn{flex:0 0 auto}
+@media(max-width:380px){.imp-carte{flex-wrap:wrap}.imp-carte .btn{width:100%}}
+
+/* reprise du dossier en cours */
+.reprise{display:flex;align-items:center;gap:13px}
+.reprise .txt{flex:1;min-width:0}
+.reprise .eyebrow{font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);font-weight:700}
+.reprise .val{font-family:var(--mono);font-size:16px;font-weight:700;overflow-wrap:anywhere;line-height:1.3}
+.reprise .sub{font-size:13px;color:var(--ink3);font-family:var(--mono)}
+
+/* ---------- aperçu ---------- */
+.scene{position:relative;border-radius:22px;padding:22px 16px 18px;margin:0 0 12px;border:1px solid var(--line2);
+  background:radial-gradient(120% 90% at 50% 0%,#15304E 0%,#0B192B 55%,#08131F 100%);box-shadow:var(--ombre)}
+.regle{display:flex;align-items:center;gap:8px;color:var(--ink3);font-family:var(--mono);font-size:11.5px;margin:0 auto 10px;max-width:400px}
+.regle::before,.regle::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line3),var(--line3))}
+.regle::before{border-left:1px solid var(--line3);height:9px;background:linear-gradient(var(--line3),var(--line3)) 0 50%/100% 1px no-repeat}
+.regle::after{border-right:1px solid var(--line3);height:9px;background:linear-gradient(var(--line3),var(--line3)) 0 50%/100% 1px no-repeat}
+.apercu{display:flex;flex-direction:column;align-items:center;gap:12px}
+.apercu canvas{display:block;width:100%;max-width:400px;height:auto;background:#fff;border-radius:8px;image-rendering:pixelated;
+  box-shadow:0 18px 40px -14px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.6)}
+.scene .leg{display:flex;justify-content:center;gap:8px;margin-top:12px;font-size:12px;color:var(--ink3)}
+.scene .leg span{display:inline-flex;align-items:center;gap:6px}
+#sortieId>label:first-child{display:none}
+#sortieId .aide{margin-top:10px}
+.qr-t{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.qr-t label{margin:0;flex:1}
+.copie-ok{color:var(--ok)!important;border-color:rgba(34,197,94,.45)!important}
+.info{display:flex;gap:11px;align-items:flex-start;padding:14px 15px}
+.info svg{color:var(--or);margin-top:1px}
+.compte{font-family:var(--mono);font-size:13px;color:var(--ink2);line-height:1.55;margin:0}
+
+/* ---------- mes étiquettes ---------- */
+.recherche{position:relative;margin-bottom:12px}
+.recherche svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--ink3);pointer-events:none}
+.recherche input{padding-left:44px;background:var(--surf);border-color:var(--line2)}
+.lot{display:flex;align-items:center;gap:13px;padding:13px;margin-bottom:10px}
+.lot-n{width:58px;height:58px;flex:0 0 auto;border-radius:14px;background:#fff;color:#000;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;line-height:1;box-shadow:0 0 0 1px rgba(255,255,255,.5)}
+.lot-n small{font-size:9.5px;font-weight:800;letter-spacing:.06em}
+.lot-n b{font-size:21px;font-weight:800;font-family:var(--mono);margin-top:3px}
+.lot-txt{flex:1;min-width:0}
+.lot-txt b{display:block;font-family:var(--mono);font-size:15.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lot-txt .r{font-family:var(--mono);font-size:13.5px;color:var(--or-ink)}
+.lot-txt small{display:block;font-size:12px;color:var(--ink3)}
+.lot-act{display:flex;flex-direction:column;gap:6px;flex:0 0 auto}
+.lot-act .btn{min-height:40px;padding:0 12px;font-size:13.5px}
+.lot-act .ico-btn{width:40px;height:40px;border-radius:11px;color:var(--ink3);margin-left:auto}
+.vide{text-align:center;padding:34px 18px;color:var(--ink3)}
+.vide .chip{margin:0 auto 12px;width:56px;height:56px;border-radius:18px}
+.vide b{display:block;color:var(--ink);font-size:16px;margin-bottom:4px}
+.expl{font-size:12.5px;color:var(--ink3);margin:-4px 2px 12px;line-height:1.45}
+
+/* ---------- modèles ---------- */
+.modeles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.modele{position:relative;text-align:left;cursor:pointer;padding:10px 10px 12px;border-radius:var(--r2);border:1px solid var(--line2);
+  background:var(--sunk);transition:border-color .15s,box-shadow .15s}
+.modele .vis{background:#24364D;border-radius:10px;padding:8px;display:grid;place-items:center;min-height:86px}
+.modele canvas{display:block;width:100%;height:auto;border-radius:4px;background:#fff;image-rendering:pixelated}
+.modele b{display:block;font-size:14.5px;margin-top:9px}
+.modele small{display:block;font-size:12px;color:var(--ink3);line-height:1.35}
+.modele.on b::after{content:"Sélectionné";display:block;width:max-content;margin-top:5px;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--or-ink);background:var(--or-soft);border-radius:999px;padding:2px 9px}
+.modele.on{border-color:var(--or);box-shadow:0 0 0 1px var(--or) inset,0 10px 24px -14px rgba(242,96,12,.8)}
+.modele .coche{position:absolute;top:14px;right:14px;width:24px;height:24px;border-radius:50%;background:var(--g-or);color:#fff;
+  display:none;place-items:center;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+.modele.on .coche{display:grid}
+#modele+.puces{display:none}
+
+/* détails techniques */
+details.tech{background:var(--surf);border:1px solid var(--line);border-radius:var(--r);margin:0 0 12px}
+details.tech>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:11px;padding:14px 16px;font-size:14.5px;font-weight:700;color:var(--ink2)}
+details.tech>summary::-webkit-details-marker{display:none}
+details.tech>summary::after{content:"";width:8px;height:8px;border-right:2px solid var(--ink3);border-bottom:2px solid var(--ink3);
+  transform:rotate(45deg);margin:0 4px 4px auto;flex:0 0 auto;transition:transform .15s}
+details.tech[open]>summary::after{transform:rotate(-135deg);margin-bottom:-4px}
+.journal{margin:0 16px 16px;max-height:240px;overflow:auto;font-family:var(--mono);font-size:11.5px;line-height:1.5;color:var(--ink2);
+  background:var(--sunk);border:1px solid var(--line);border-radius:var(--r3);padding:10px 12px;white-space:pre-wrap;overflow-wrap:anywhere}
+
+/* ---------- barre d'impression (dock) ---------- */
+.dock{position:fixed;z-index:50;left:0;right:0;bottom:0;padding:10px 16px calc(10px + var(--safe-b));display:none;
+  background:rgba(7,17,31,.88);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line2)}
+body.avec-dock .dock{display:block}
+.dock-in{max-width:528px;margin:0 auto}
+.dock-rang{display:flex;align-items:center;gap:12px}
+.dock-meta{min-width:0;flex:1}
+.dock-meta strong{display:block;font-size:14.5px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dock-suite{display:none;align-items:center;gap:12px;margin:0 0 10px;padding:8px 8px 8px 13px;border-radius:var(--r3);
+  background:var(--warn-soft);border:1px solid rgba(245,184,61,.38)}
+body.dock-doublon .dock-suite{display:flex}
+body.dock-doublon{--dock-h:132px}
+.dock-suite span{flex:1;min-width:0;font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.3}
+.dock-suite .btn{flex:0 0 auto;min-height:44px;font-size:14.5px;background:transparent;border-color:rgba(245,184,61,.65);color:var(--warn);box-shadow:none}
+.dock .etat{font-size:12.5px;font-weight:600;color:var(--ink2);margin-top:3px;gap:8px;min-width:0}
+.dock .etat>span:not(.pastille){white-space:nowrap}
+.dock .etat small{display:inline;margin-left:2px;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.dock .pastille{width:9px;height:9px}
+.dock .btn{flex:0 0 auto;min-width:138px;min-height:54px;font-size:16.5px;border-radius:15px}
+
+/* ---------- messages flottants ---------- */
+#btAlerte{position:fixed;z-index:60;left:0;right:0;bottom:calc(var(--nav-h) + var(--safe-b) + 10px);padding:0 16px;pointer-events:none}
+body.avec-dock #btAlerte{bottom:calc(var(--dock-h) + var(--safe-b) + 10px)}
+#btAlerte .verdict{pointer-events:auto;max-width:528px;margin:0 auto;max-height:34vh;overflow:auto;cursor:pointer;
+  background:#13233A;box-shadow:0 18px 40px -12px rgba(0,0,0,.8);animation:entree .2s ease-out}
+#btAlerte .verdict.stop{border-color:var(--stop)} #btAlerte .verdict.warn{border-color:var(--warn)}
+
+/* ---------- navigation ---------- */
+.nav{position:fixed;z-index:50;left:0;right:0;bottom:0;padding:0 8px var(--safe-b);background:rgba(7,17,31,.9);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line2)}
+body.avec-dock .nav{display:none}
+.nav-in{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);height:var(--nav-h)}
+.nav button{background:none;border:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  color:var(--ink3);font-size:11.5px;font-weight:600;position:relative}
+.nav button.on{color:var(--bleu-ink)}
+.nav button.on::before{content:"";position:absolute;top:0;width:30px;height:3px;border-radius:0 0 3px 3px;background:var(--bleu)}
+.nav svg.i{width:23px;height:23px}
+
+/* ---------- panneau de choix (série, paires, calibre) ---------- */
+#feuille{position:fixed;inset:0;z-index:100}
+#fFond{position:absolute;inset:0;background:rgba(2,6,12,.72);animation:fondu .18s ease-out}
+@keyframes fondu{from{opacity:0}}
+.f-pan{position:absolute;left:0;right:0;bottom:0;background:var(--surf);border-top:1px solid var(--line2);border-radius:24px 24px 0 0;
+  padding:10px 16px calc(20px + var(--safe-b));max-height:78vh;overflow:auto;max-width:560px;margin:0 auto;animation:monte .22s ease-out}
+.f-pan::before{content:"";display:block;width:40px;height:4px;border-radius:2px;background:var(--line3);margin:0 auto 12px}
+@keyframes monte{from{transform:translateY(30px);opacity:.4}}
+.f-tete{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.f-tete h4{margin:0;font-size:17px}
+.f-pan .puces.grille{grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:10px}
+.f-pan .puce{min-height:58px;font-size:18px}
+
+/* ---------- panneau d'impression ---------- */
+#impression{position:fixed;inset:0;z-index:110;display:flex;align-items:flex-end;justify-content:center}
+#impression .fond{position:absolute;inset:0;background:rgba(2,6,12,.78);animation:fondu .18s ease-out}
+.m-pan{position:relative;width:100%;max-width:560px;max-height:94vh;overflow:auto;background:var(--bg2);border:1px solid var(--line2);border-bottom:0;
+  border-radius:26px 26px 0 0;padding:18px 18px calc(18px + var(--safe-b));animation:monte .22s ease-out}
+.m-tete{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.m-tete h4{margin:0;font-size:20px;letter-spacing:-.01em}
+.m-tete p{margin:1px 0 0;font-size:13px;color:var(--ink3)}
+.m-papier{display:grid;place-items:center;padding:14px;border-radius:18px;background:radial-gradient(120% 100% at 50% 0%,#15304E,#0A1626);border:1px solid var(--line)}
+.m-papier canvas{display:block;width:100%;max-width:260px;height:auto;border-radius:6px;background:#fff;image-rendering:pixelated;box-shadow:0 12px 28px -10px rgba(0,0,0,.8)}
+.anneau{position:relative;width:132px;height:132px;margin:18px auto 8px}
+.anneau svg{width:132px;height:132px;transform:rotate(-90deg)}
+.anneau circle{fill:none;stroke-width:9}
+.anneau .fondA{stroke:rgba(148,163,184,.16)}
+.anneau .val{stroke:url(#gradAnneau);stroke-linecap:round;transition:stroke-dashoffset .35s ease}
+.anneau.err .val{stroke:var(--stop)}
+.anneau.att .val{animation:tourne 1.1s linear infinite;transform-origin:50% 50%}
+@keyframes tourne{to{transform:rotate(360deg)}}
+.anneau .c{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.anneau .c b{display:block;font-size:26px;font-family:var(--mono);font-weight:800;line-height:1}
+.anneau .c small{display:block;font-size:11.5px;color:var(--ink3);margin-top:4px}
+.m-titre{text-align:center;font-size:17px;font-weight:700;margin:4px 0 2px}
+.m-sous{text-align:center;font-size:13.5px;color:var(--ink3);margin:0 0 14px}
+.etapes{list-style:none;margin:0 0 14px;padding:0}
+.etapes li{display:flex;align-items:center;gap:12px;padding:9px 2px;font-size:14.5px;color:var(--ink4)}
+.etapes li .pt{width:24px;height:24px;border-radius:50%;border:2px solid var(--line3);flex:0 0 auto;display:grid;place-items:center}
+.etapes li.cours{color:var(--ink)}
+.etapes li.cours .pt{border-color:var(--bleu);border-top-color:transparent;animation:tourne .9s linear infinite}
+.etapes li.ok{color:var(--ink2)}
+.etapes li.ok .pt{border:0;background:var(--bleu);color:#fff}
+.etapes li.err{color:#FF8A8A}
+.etapes li.err .pt{border:0;background:var(--stop);color:#fff}
+.etapes li small{margin-left:auto;font-family:var(--mono);font-size:12.5px;color:var(--ink3)}
+.m-actions{display:flex;gap:10px}
+.m-actions .btn{flex:1}
+.res{border-radius:var(--r2);padding:14px 15px;margin:0 0 14px;border:1px solid var(--line2);background:var(--surf);font-size:14px;color:var(--ink2);line-height:1.5}
+.res b{display:block;font-size:15.5px;color:var(--ink);margin-bottom:3px}
+.res.ok{background:var(--ok-soft);border-color:rgba(34,197,94,.35)} .res.ok b{color:#4ADE80}
+.res.warn{background:var(--warn-soft);border-color:rgba(245,184,61,.35)} .res.warn b{color:var(--warn)}
+.res.stop{background:var(--stop-soft);border-color:rgba(240,82,82,.42)} .res.stop b{color:#FF7A7A}
+.res details{margin-top:9px}
+.res summary{cursor:pointer;font-weight:700;font-size:13px;color:var(--ink3)}
+.res .journal{margin:8px 0 0;max-height:170px}
+
+.copy{text-align:center;font-size:12px;color:var(--ink4);margin:20px 0 4px}
+
+#planche{display:none}
+@media print{
+  html,body{background:#fff}
+  .app,.nav,.dock,#btAlerte,#impression,#feuille{display:none!important}
+  #planche{display:block}
+  #planche img{display:block;page-break-after:always;break-after:page}
+}
+
+/* ---------- ajustements petits écrans ---------- */
+.g3 label,.g2 label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.compte{font-family:var(--ui);font-size:14px}
+#prefixe,#poi{padding-left:12px;padding-right:10px;letter-spacing:-.02em}
+@media (max-height:860px){
+  .m-papier{padding:10px}
+  .m-papier canvas{max-width:190px}
+  .anneau,.anneau svg{width:104px;height:104px}
+  .anneau{margin:12px auto 4px}
+  .anneau .c b{font-size:22px}
+  .etapes li{padding:6px 2px}
+  .m-sous{margin-bottom:8px}
+}
+/* ---------- version équipe ---------- */
+body.equipe #histo{display:none}
+.eq-statut{position:relative;z-index:1;display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:12px;font-size:13px;font-weight:600;color:var(--ink2)}
+.eq-statut .pastille{width:9px;height:9px}
+.eq-badge{font-size:12px;font-weight:700;color:var(--warn);background:var(--warn-soft);border:1px solid rgba(245,184,61,.35);border-radius:999px;padding:2px 9px}
+.eq-res{display:flex;align-items:center;gap:12px;margin-top:12px;padding:12px 13px;border-radius:var(--r2);background:var(--sunk);border:1px solid var(--line)}
+.eq-res>div:first-child{flex:1;min-width:0}
+.eq-res b{display:block;font-family:var(--mono);font-size:13.5px;color:var(--ink);overflow-wrap:anywhere}
+.eq-res .eyebrow,.eq-titre,#eqCompte .eyebrow{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);font-weight:700}
+.eq-act{display:flex;gap:8px;flex:0 0 auto}
+.eq-act .ico-btn{width:44px;height:44px}
+.eq-titre{margin:18px 2px 10px}
+.eq-titre:first-child{margin-top:4px}
+.lot-n.att{background:var(--warn);color:#1a1200}
+.lot-n.res{background:var(--bleu);color:#fff;box-shadow:none}
+#eqCompte .txt b{display:block;font-size:15px}
+#eqCompte .sub{display:block;font-size:12.5px;color:var(--ink3);font-family:var(--ui)}
+#eqLogin{position:fixed;inset:0;z-index:200;overflow:auto;
+  background:radial-gradient(900px 420px at 50% -180px,rgba(8,120,255,.22),transparent 70%),var(--bg)}
+.eq-login{max-width:420px;margin:0 auto;padding:calc(48px + env(safe-area-inset-top,0px)) 20px 32px}
+.eq-login .logo{margin-bottom:18px}
+.eq-login h1{margin:0;font-size:26px;font-weight:800;letter-spacing:-.02em}
+.eq-login h1 em{font-style:normal;color:var(--bleu-ink)}
+.eq-login>p{color:var(--ink3);margin:8px 0 22px;font-size:14.5px}
+.eq-login form{margin-top:16px}
+.eq-login .field{margin-bottom:14px}
+.eq-login #eqMsg .verdict{margin:0 0 6px}
+.eq-badge.rouge{color:#FF8A8A;background:var(--stop-soft);border-color:rgba(240,82,82,.45)}
+#eqAccueil .verdict{margin:0 0 14px}
+#eqNum .verdict{margin-top:14px}
+.eq-alertes .mono{font-family:var(--mono);font-size:12.5px;color:var(--ink)}
+</style>
+
+<div class="app">
+
+  <!-- ================= ACCUEIL ================= -->
+  <section class="ecran" id="e-accueil" data-ecran="accueil" data-nav="accueil">
+    <header class="hero">
+      <div class="hero-top">
+        <div class="logo" id="icoLogo"></div>
+        <div class="hero-t"><h1>Étiquettes Fagot <em>M220</em></h1></div>
+        <button class="ico-btn" type="button" data-aller="imprimante" aria-label="Imprimante et réglages"><i data-i="reglages"></i></button>
+      </div>
+      <p>Création et impression rapide d'étiquettes QR pour fagots et big bags, sur imprimante Phomemo M220.</p>
+    </header>
+
+    <div class="tuiles">
+      <button class="tuile t-or" type="button" data-aller="creer">
+        <span class="t-ico"><i data-i="creer" data-c="lg"></i></span>
+        <span><b>Créer une étiquette</b><small>Dossier, câble, numéros</small></span><i data-i="chevron" data-c="fl"></i>
+      </button>
+      <button class="tuile t-bleu" type="button" data-aller="etiquettes">
+        <span class="t-ico"><i data-i="liste" data-c="lg"></i></span>
+        <span><b>Mes étiquettes</b><small id="hNbDossiers">Numéros déjà imprimés</small></span><i data-i="chevron" data-c="fl"></i>
+      </button>
+      <button class="tuile" type="button" data-aller="imprimante">
+        <span class="t-ico"><i data-i="imprimer" data-c="lg"></i></span>
+        <span><b>Imprimante</b><small>Connexion, essai, calibrage</small></span><i data-i="chevron" data-c="fl"></i>
+      </button>
+      <button class="tuile" type="button" data-aller="modeles">
+        <span class="t-ico"><i data-i="modeles" data-c="lg"></i></span>
+        <span><b>Modèles</b><small id="hModele">Format de l'étiquette</small></span><i data-i="chevron" data-c="fl"></i>
+      </button>
+    </div>
+
+    <div class="carte reprise" id="hReprise" hidden>
+      <span class="chip"><i data-i="dossier"></i></span>
+      <div class="txt">
+        <div class="eyebrow">Dossier en cours</div>
+        <div class="val" id="hDossier">—</div>
+        <div class="sub" id="hRef">—</div>
+      </div>
+      <button class="btn sm or" type="button" data-aller="creer">Continuer</button>
+    </div>
+
+    <div class="carte">
+      <div class="imp-carte">
+        <div class="imp-vis"><i data-i="imprimer" data-c="xl"></i></div>
+        <div class="txt">
+          <div class="mir-etat"><span class="pastille mir-pastille"></span><span class="mir-txt">Non connectée</span></div>
+          <b>Phomemo M220</b>
+          <span class="mir-sub"></span>
+        </div>
+        <button class="btn sm bleu mir-conn" type="button" data-action="connecter">Connecter</button>
+      </div>
+      <div class="btnrow mir-actions" hidden>
+        <button class="btn sm mir-test" type="button">Tester l'impression</button>
+      </div>
+    </div>
+
+    <p class="copy">© 2026 Aibid · Tous droits réservés</p>
+  </section>
+
+  <!-- ================= CRÉER ================= -->
+  <section class="ecran" id="e-creer" data-ecran="creer" data-dock>
+    <header class="barre">
+      <button class="ico-btn retour" type="button" data-retour="accueil" aria-label="Retour"><i data-i="retour"></i></button>
+      <div><h2>Créer une étiquette</h2><p>Dossier · câble · numérotation</p></div>
+    </header>
+
+    <div class="carte">
+      <div class="carte-t"><span class="chip" id="ic2"></span>Dossier et câble<span class="refpuce" id="refAff">88/224/6</span></div>
+      <div class="g2">
+        <div class="field"><label for="prefixe">Préfixe</label><input type="text" class="num" id="prefixe" value="" placeholder="PREFIXE" autocapitalize="characters" autocomplete="off" spellcheck="false"></div>
+        <div class="field"><label for="poi">N° de dossier</label><input type="text" class="num" id="poi" placeholder="ABC600123" autocapitalize="characters" autocomplete="off" spellcheck="false"></div>
+      </div>
+      <div id="histo"></div>
+      <span id="ic1" hidden></span>
+      <div class="sep"></div>
+      <div class="g3">
+        <div class="field"><label for="serie">Série</label><select id="serie"></select></div>
+        <div class="field"><label for="capa">Paires</label><select id="capa"></select></div>
+        <div class="field"><label for="cal">Calibre</label><select id="cal"></select></div>
+      </div>
+      <div class="field" id="champAutre" style="display:none">
+        <label for="serieAutre">Série — autre valeur</label><input type="text" class="num" id="serieAutre" placeholder="92">
+      </div>
+      <div id="infoPoids"></div>
+    </div>
+
+    <div class="carte">
+      <div class="carte-t"><span class="chip" id="ic3"></span>Fagots et longueur</div>
+      <div class="field"><label for="contenant">Contenant</label>
+        <select id="contenant"><option value="auto" selected>Auto</option><option value="F">Fagot</option><option value="B">Big bag</option></select></div>
+      <div class="g2" id="plageNum">
+        <div class="field"><label for="debut">Du n°</label>
+          <div class="pas"><button class="btn" type="button" data-pas="debut:-1" aria-label="Diminuer">−</button><input type="text" class="num" id="debut" value="1" inputmode="numeric"><button class="btn" type="button" data-pas="debut:1" aria-label="Augmenter">+</button></div></div>
+        <div class="field"><label for="fin">Au n°</label>
+          <div class="pas"><button class="btn" type="button" data-pas="fin:-1" aria-label="Diminuer">−</button><input type="text" class="num" id="fin" value="6" inputmode="numeric"><button class="btn" type="button" data-pas="fin:1" aria-label="Augmenter">+</button></div></div>
+      </div>
+      <div class="field"><label for="metres">Ou longueur déposée (m)</label>
+        <input type="text" class="num" id="metres" inputmode="decimal" placeholder="594"></div>
+      <div class="g2">
+        <div class="field"><label for="total">Total affiché</label>
+          <input type="text" class="num" id="total" inputmode="numeric" placeholder="auto"></div>
+        <div class="field"><label for="exemplaires" id="lblEx">Étiquettes par fagot</label>
+          <select id="exemplaires"><option value="1">1</option>
+          <option value="2" selected>2</option></select></div>
+      </div>
+      <div id="calcFagots"></div>
+    </div>
+
+    <button class="btn bleu lg full" type="button" data-aller="apercu"><i data-i="oeil"></i>Aperçu de l'étiquette<i data-i="chevron" data-c="fl"></i></button>
+  </section>
+
+  <!-- ================= APERÇU ================= -->
+  <section class="ecran" id="e-apercu" data-ecran="apercu" data-dock>
+    <header class="barre">
+      <button class="ico-btn retour" type="button" data-retour="creer" aria-label="Retour"><i data-i="retour"></i></button>
+      <div><h2>Aperçu</h2><p id="apDim">Étiquette 40 × 30 mm</p></div>
+      <button class="ico-btn" type="button" data-retour="creer" aria-label="Modifier"><i data-i="modifier"></i></button>
+    </header>
+
+    <div class="scene">
+      <div class="regle" id="apLarg">40 mm</div>
+      <div class="apercu" id="apercu" aria-label="Aperçu de l'étiquette"></div>
+      <div class="leg"><span><span class="chip" id="ic6" style="width:22px;height:22px;border-radius:7px;background:none"></span>Taille réelle à l'impression · 8 points par mm</span></div>
+    </div>
+
+    <div class="carte">
+      <div class="qr-t"><label>Contenu du QR</label>
+        <button class="btn sm" type="button" id="btnCopier" aria-label="Copier le contenu du QR"><i data-i="copier" data-c="sm"></i>Copier</button></div>
+      <div id="sortieId"></div>
+    </div>
+
+    <div class="carte info"><i data-i="info"></i><p class="compte" id="compte"></p></div>
+  </section>
+
+  <!-- ================= MES ÉTIQUETTES ================= -->
+  <section class="ecran" id="e-etiquettes" data-ecran="etiquettes" data-nav="etiquettes">
+    <header class="barre">
+      <div><h2>Mes étiquettes</h2><p>Numéros déjà imprimés, par dossier et référence</p></div>
+      <button class="ico-btn" type="button" data-aller="creer" aria-label="Créer une étiquette"><i data-i="creer"></i></button>
+    </header>
+    <div class="recherche"><i data-i="chercher"></i><input type="search" id="recherche" placeholder="Rechercher un dossier ou une référence…" autocomplete="off" spellcheck="false" aria-label="Rechercher"></div>
+    <p class="expl">Enregistré sur ce téléphone après chaque impression. « Reprendre » rouvre le dossier au numéro suivant.</p>
+    <div id="liste"></div>
+  </section>
+
+  <!-- ================= MODÈLES ================= -->
+  <section class="ecran" id="e-modeles" data-ecran="modeles" data-nav="modeles">
+    <header class="barre">
+      <div><h2>Modèles</h2><p>Modèle et format de l'étiquette</p></div>
+      <span class="refpuce badge" id="resEtiquette"></span>
+    </header>
+
+    <div class="carte">
+      <div class="carte-t"><span class="chip bleu"><i data-i="modeles"></i></span>Modèle d'étiquette</div>
+      <div class="modeles">
+        <button class="modele" type="button" data-modele="B"><span class="coche"><i data-i="coche" data-c="sm"></i></span>
+          <div class="vis" id="visB"></div><b>Bandeau</b><small>Grand n° de fagot, lisible de loin. QR plus petit.</small></button>
+        <button class="modele" type="button" data-modele="Q"><span class="coche"><i data-i="coche" data-c="sm"></i></span>
+          <div class="vis" id="visQ"></div><b>QR agrandi</b><small>QR plus grand, lecture plus sûre. Texte plus petit.</small></button>
+      </div>
+      <div class="field" hidden><label for="modele">Modèle d'étiquette</label>
+        <select id="modele"><option value="B" selected>Bandeau</option><option value="Q">QR agrandi</option></select></div>
+      <p class="note" style="margin-top:4px">Aperçu avec les données du dossier en cours.</p>
+    </div>
+
+    <div class="carte" id="detEtiquette">
+      <div class="carte-t"><span class="chip" id="ic5"></span>Format du rouleau</div>
+      <div class="btnrow" style="margin:0 0 14px">
+        <button class="btn sm" type="button" id="btnR40">Rouleau 40 × 30</button>
+        <button class="btn sm" type="button" id="btnR50">Rouleau 50 × 30</button>
+      </div>
+      <div class="g2">
+        <div class="field"><label for="larg">Largeur mm</label><input type="text" class="num" id="larg" value="40" inputmode="decimal"></div>
+        <div class="field"><label for="haut">Hauteur mm</label><input type="text" class="num" id="haut" value="30" inputmode="decimal"></div>
+      </div>
+      <button class="aide" type="button" aria-label="Aide">?</button><p class="note repli" hidden>Reportez les dimensions inscrites sur la boîte du rouleau (mesurez-la en cas de doute : le rouleau livré dans l'imprimante fait 40 × 30 mm).</p>
+    </div>
+
+    <div class="carte">
+      <div class="carte-t"><span class="chip bleu" id="ic7"></span>Contour et QR</div>
+      <div class="g2">
+        <div class="field"><label for="cadre">Contour noir</label>
+          <select id="cadre"><option value="1" selected>Oui</option><option value="0">Non</option></select></div>
+        <div class="field"><label for="niveau">Correction du QR</label><select id="niveau">
+          <option value="M">M</option>
+          <option value="Q" selected>Q</option>
+          <option value="H">H</option>
+        </select></div>
+      </div>
+      <p class="note">Correction Q : bon compromis par défaut. H lit mieux un QR abîmé mais le rend plus dense.</p>
+    </div>
+  </section>
+
+  <!-- ================= IMPRIMANTE ================= -->
+  <section class="ecran" id="e-imprimante" data-ecran="imprimante" data-nav="">
+    <header class="barre">
+      <button class="ico-btn retour" type="button" data-retour="accueil" aria-label="Retour"><i data-i="retour"></i></button>
+      <div><h2>Imprimante</h2><p>Connexion · essai · calibrage</p></div>
+      <span class="refpuce badge" id="resImprimante" style="max-width:38%;overflow:hidden;text-overflow:ellipsis"></span>
+    </header>
+
+    <div class="carte" id="detImprimante">
+      <div class="imp-carte">
+        <div class="imp-vis"><i data-i="imprimer" data-c="xl"></i></div>
+        <div class="txt">
+          <div class="mir-etat"><span class="pastille mir-pastille"></span><span class="mir-txt">Non connectée</span></div>
+          <b>Phomemo M220</b>
+          <span class="mir-sub"></span>
+        </div>
+      </div>
+      <div class="btnrow">
+        <button class="btn bleu" type="button" id="btnConn"></button>
+      </div>
+    </div>
+
+    <div class="carte">
+      <div class="carte-t"><span class="chip" id="ic4"></span>Essai et calibrage</div>
+      <div class="btnrow" style="margin-top:0">
+        <button class="btn sm" type="button" id="btnTest">Étiquette d'essai</button>
+        <button class="btn sm" type="button" id="btnCalib">Étiquette de calibrage</button>
+      </div>
+      <div class="g3" style="margin-top:16px">
+        <div class="field"><label for="densite">Noirceur 1-15</label><input type="text" class="num" id="densite" value="10" inputmode="numeric"></div>
+        <div class="field"><label for="decal">Latéral mm</label><input type="text" class="num" id="decal" value="0" inputmode="text"></div>
+        <div class="field"><label for="decalV">Vertical mm</label><input type="text" class="num" id="decalV" value="0" inputmode="text"></div>
+      </div>
+      <button class="aide" type="button" aria-label="Aide">?</button><p class="note repli" hidden>Calibrage : imprimez l'étiquette de calibrage. Le cadre doit longer les quatre bords. S'il est coupé à gauche, augmentez « Latéral » (positif = vers la droite) ; coupé en haut, augmentez « Vertical » (positif = vers le bas). Si le cadre est plus petit ou plus grand que l'étiquette, corrigez largeur et hauteur dans « Format de l'étiquette ». Si le QR bave, baissez la noirceur.</p>
+    </div>
+
+    <details class="tech" id="detTech">
+      <summary><i data-i="terminal"></i>Détails techniques</summary>
+      <div class="journal" id="journal">Aucun échange avec l'imprimante pour l'instant.</div>
+    </details>
+  </section>
+</div>
+
+<!-- ================= BARRE D'IMPRESSION ================= -->
+<div class="dock" role="region" aria-label="Impression">
+  <div class="dock-in">
+    <div class="dock-suite" id="dockSuiteBloc"><span id="dockSuiteTxt"></span><button class="btn sm or" type="button" id="dockSuite"></button></div>
+    <div class="dock-rang">
+      <div class="dock-meta">
+        <strong id="dockCount">—</strong>
+        <div class="etat" role="status" aria-live="polite"><span class="pastille" id="pastille" aria-hidden="true"></span><span id="etatTxt">Non connectée</span><small id="etatSub"></small></div>
+      </div>
+      <button class="btn cu" type="button" id="btnImp"></button>
+    </div>
+  </div>
+</div>
+
+<div id="btAlerte" role="alert"></div>
+
+<nav class="nav" aria-label="Navigation">
+  <div class="nav-in">
+    <button type="button" data-aller="accueil" data-onglet="accueil"><i data-i="accueil"></i>Accueil</button>
+    <button type="button" data-aller="creer" data-onglet="creer"><i data-i="creer"></i>Créer</button>
+    <button type="button" data-aller="etiquettes" data-onglet="etiquettes"><i data-i="liste"></i>Étiquettes</button>
+    <button type="button" data-aller="modeles" data-onglet="modeles"><i data-i="modeles"></i>Modèles</button>
+  </div>
+</nav>
+
+<div id="feuille" hidden>
+  <div id="fFond"></div>
+  <div class="f-pan" role="dialog" aria-modal="true" aria-labelledby="fTitre">
+    <div class="f-tete"><h4 id="fTitre"></h4><button class="ico-btn" id="fFermer" type="button" aria-label="Fermer">✕</button></div>
+    <div class="puces grille" id="fOpts"></div>
+  </div>
+</div>
+
+<!-- ================= PANNEAU D'IMPRESSION ================= -->
+<div id="impression" hidden>
+  <div class="fond"></div>
+  <div class="m-pan" role="dialog" aria-modal="true" aria-labelledby="impT">
+    <div class="m-tete">
+      <span class="chip bleu"><i data-i="imprimer"></i></span>
+      <div><h4 id="impT">Impression</h4><p id="impLib">—</p></div>
+    </div>
+    <div class="m-papier"><canvas id="impToile" width="320" height="240" aria-label="Étiquette en cours d'envoi"></canvas></div>
+    <div class="anneau" id="impAnneau">
+      <svg viewBox="0 0 132 132" aria-hidden="true">
+        <defs><linearGradient id="gradAnneau" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5AAEFF"/><stop offset="1" stop-color="#0878FF"/></linearGradient></defs>
+        <circle class="fondA" cx="66" cy="66" r="56"/><circle class="val" id="impArc" cx="66" cy="66" r="56" stroke-dasharray="351.86" stroke-dashoffset="351.86"/>
+      </svg>
+      <div class="c"><div><b id="impPct">0</b><small id="impPctSous">sur 0</small></div></div>
+    </div>
+    <p class="m-titre" id="impTitre">Préparation…</p>
+    <p class="m-sous" id="impSous"></p>
+    <ul class="etapes">
+      <li id="stConn"><span class="pt"></span>Connexion à l'imprimante</li>
+      <li id="stEnvoi"><span class="pt"></span>Envoi des données<small id="stEnvoiN"></small></li>
+      <li id="stFin"><span class="pt"></span>Toutes les étiquettes envoyées</li>
+    </ul>
+    <div id="impRes"></div>
+    <div class="m-actions">
+      <button class="btn danger" type="button" id="btnStop" style="display:none">Arrêter</button>
+      <button class="btn" type="button" id="impFermer" hidden>Fermer</button>
+    </div>
+  </div>
+</div>
+
+<div id="planche"></div>
+<style id="stylePage"></style>
+
+<script>
+/* ===================================================================
+   Encodeur QR — mode octet, correction M, versions 1 à 10.
+   Sans dépendance : les étiquettes doivent se générer hors ligne.
+   =================================================================== */
+function qrMatrice(texte, niveau){
+  "use strict";
+
+  /* --- tables par version et par niveau de correction --- */
+  //        [total codewords, EC par bloc, [ [nb blocs, data par bloc], ... ] ]
+  const TABLES = {
+    M: { 1:[26,10,[[1,16]]],            2:[44,16,[[1,28]]],
+         3:[70,26,[[1,44]]],            4:[100,18,[[2,32]]],
+         5:[134,24,[[2,43]]],           6:[172,16,[[4,27]]],
+         7:[196,18,[[4,31]]],           8:[242,22,[[2,38],[2,39]]],
+         9:[292,22,[[3,36],[2,37]]],   10:[346,26,[[4,43],[1,44]]] },
+    Q: { 1:[26,13,[[1,13]]],            2:[44,22,[[1,22]]],
+         3:[70,18,[[2,17]]],            4:[100,26,[[2,24]]],
+         5:[134,18,[[2,15],[2,16]]],    6:[172,24,[[4,19]]],
+         7:[196,18,[[2,14],[4,15]]],    8:[242,22,[[4,18],[2,19]]],
+         9:[292,20,[[4,16],[4,17]]],   10:[346,24,[[6,19],[2,20]]] },
+    H: { 1:[26,17,[[1,9]]],             2:[44,28,[[1,16]]],
+         3:[70,22,[[2,13]]],            4:[100,16,[[4,9]]],
+         5:[134,22,[[2,11],[2,12]]],    6:[172,28,[[4,15]]],
+         7:[196,26,[[4,13],[1,14]]],    8:[242,26,[[4,14],[2,15]]],
+         9:[292,24,[[4,12],[4,13]]],   10:[346,28,[[6,15],[2,16]]] }
+  };
+  // Niveau H par défaut, 30 % de récupération.
+  const NIV = TABLES[niveau] ? niveau : "H";
+  const BITS_NIV = {L:0b01, M:0b00, Q:0b11, H:0b10}[NIV];
+  const VER = TABLES[NIV];
+  const ALIGN = {1:[],2:[6,18],3:[6,22],4:[6,26],5:[6,30],
+                 6:[6,34],7:[6,22,38],8:[6,24,42],9:[6,26,46],10:[6,28,50]};
+
+  /* --- arithmétique GF(256), polynôme 0x11D --- */
+  const EXP = new Uint8Array(512), LOG = new Uint8Array(256);
+  for(let i=0, x=1; i<255; i++){
+    EXP[i] = x; LOG[x] = i;
+    x <<= 1; if(x & 0x100) x ^= 0x11D;
+  }
+  for(let i=255;i<512;i++) EXP[i] = EXP[i-255];
+  const mul = (a,b) => (a===0||b===0) ? 0 : EXP[LOG[a]+LOG[b]];
+
+  // Construit le polynôme en ordre « degré croissant », puis le retourne :
+  // la division ci-dessous attend le coefficient dominant en tête.
+  function polyGen(n){
+    let g = [1];
+    for(let i=0;i<n;i++){
+      const nv = new Array(g.length+1).fill(0);
+      for(let j=0;j<g.length;j++){
+        nv[j]   ^= mul(g[j], EXP[i]);
+        nv[j+1] ^= g[j];
+      }
+      g = nv;
+    }
+    return g.reverse();
+  }
+  function reedSolomon(data, nEC){
+    const g = polyGen(nEC), res = new Array(nEC).fill(0);
+    for(const d of data){
+      const f = d ^ res[0];
+      res.shift(); res.push(0);
+      if(f !== 0) for(let i=0;i<nEC;i++) res[i] ^= mul(g[i+1], f);
+    }
+    return res;
+  }
+
+  /* --- texte en octets UTF-8 --- */
+  const octets = [];
+  for(const ch of String(texte)){
+    const c = ch.codePointAt(0);
+    if(c < 0x80) octets.push(c);
+    else if(c < 0x800) octets.push(0xC0|(c>>6), 0x80|(c&63));
+    else if(c < 0x10000) octets.push(0xE0|(c>>12), 0x80|((c>>6)&63), 0x80|(c&63));
+    else octets.push(0xF0|(c>>18), 0x80|((c>>12)&63), 0x80|((c>>6)&63), 0x80|(c&63));
+  }
+
+  /* --- plus petite version qui contient la donnée --- */
+  let ver = 0;
+  for(let v=1; v<=10; v++){
+    const [tot, ec, grp] = VER[v];
+    const cap = grp.reduce((s,[n,d])=>s+n*d, 0);
+    const entete = 4 + (v<10 ? 8 : 16);            // mode + compteur
+    if(octets.length*8 + entete <= cap*8){ ver = v; break; }
+  }
+  if(!ver) throw new Error("texte trop long pour un QR version 10 en niveau "+NIV);
+  const [TOT, NEC, GRP] = VER[ver];
+  const nData = GRP.reduce((s,[n,d])=>s+n*d, 0);
+
+  /* --- flux de bits --- */
+  const bits = [];
+  const push = (val, n) => { for(let i=n-1;i>=0;i--) bits.push((val>>i)&1); };
+  push(0b0100, 4);                                 // mode octet
+  push(octets.length, ver<10 ? 8 : 16);
+  for(const o of octets) push(o, 8);
+  for(let i=0; i<4 && bits.length < nData*8; i++) bits.push(0);   // terminateur
+  while(bits.length % 8) bits.push(0);
+  const mots = [];
+  for(let i=0;i<bits.length;i+=8){
+    let v=0; for(let j=0;j<8;j++) v = (v<<1) | bits[i+j];
+    mots.push(v);
+  }
+  const REMPLI = [0xEC, 0x11];
+  for(let i=0; mots.length < nData; i++) mots.push(REMPLI[i%2]);
+
+  /* --- découpage en blocs, correction, entrelacement --- */
+  const blocsD = [], blocsE = [];
+  let pos = 0;
+  for(const [n,d] of GRP){
+    for(let i=0;i<n;i++){
+      const b = mots.slice(pos, pos+d); pos += d;
+      blocsD.push(b); blocsE.push(reedSolomon(b, NEC));
+    }
+  }
+  const final = [];
+  const maxD = Math.max(...blocsD.map(b=>b.length));
+  for(let i=0;i<maxD;i++) for(const b of blocsD) if(i<b.length) final.push(b[i]);
+  for(let i=0;i<NEC;i++) for(const b of blocsE) final.push(b[i]);
+
+  /* --- trame --- */
+  const N = ver*4 + 17;
+  const M = Array.from({length:N}, ()=>new Array(N).fill(null));   // null = libre
+  const reserve = Array.from({length:N}, ()=>new Array(N).fill(false));
+
+  function poser(r,c,v,res){
+    if(r<0||c<0||r>=N||c>=N) return;
+    M[r][c] = v; if(res) reserve[r][c] = true;
+  }
+  function reperage(r0,c0){
+    for(let r=-1;r<=7;r++) for(let c=-1;c<=7;c++){
+      const rr=r0+r, cc=c0+c;
+      if(rr<0||cc<0||rr>=N||cc>=N) continue;
+      const bord = (r>=0&&r<=6&&(c===0||c===6)) || (c>=0&&c<=6&&(r===0||r===6));
+      const coeur = r>=2&&r<=4&&c>=2&&c<=4;
+      poser(rr,cc,(bord||coeur)?1:0,true);
+    }
+  }
+  reperage(0,0); reperage(0,N-7); reperage(N-7,0);
+
+  for(let i=8;i<N-8;i++){                          // bandes de synchronisation
+    poser(6,i,(i%2===0)?1:0,true);
+    poser(i,6,(i%2===0)?1:0,true);
+  }
+  for(const r of ALIGN[ver]) for(const c of ALIGN[ver]){
+    if((r<=8&&c<=8)||(r<=8&&c>=N-9)||(r>=N-9&&c<=8)) continue;
+    for(let dr=-2;dr<=2;dr++) for(let dc=-2;dc<=2;dc++){
+      const m = Math.max(Math.abs(dr),Math.abs(dc));
+      poser(r+dr,c+dc,(m!==1)?1:0,true);
+    }
+  }
+  poser(N-8,8,1,true);                             // module sombre
+
+  // Zones de format. (8,6) et (6,8) appartiennent aux bandes de
+  // synchronisation : déjà réservées, surtout ne pas les réécrire.
+  for(let i=0;i<9;i++){
+    if(i!==6){ poser(8,i,0,true); poser(i,8,0,true); }
+  }
+  for(let i=0;i<8;i++){ poser(8,N-1-i,0,true); poser(N-1-i,8,0,true); }
+
+  if(ver>=7){                                      // zones de version
+    for(let i=0;i<6;i++) for(let j=0;j<3;j++){
+      poser(N-11+j,i,0,true); poser(i,N-11+j,0,true);
+    }
+  }
+
+  /* --- parcours en zigzag --- */
+  let idx = 0, bit = 0, montant = true;
+  for(let col=N-1; col>0; col-=2){
+    if(col===6) col--;                             // on saute la bande verticale
+    for(let k=0;k<N;k++){
+      const r = montant ? N-1-k : k;
+      for(const c of [col, col-1]){
+        if(reserve[r][c]) continue;
+        let v = 0;
+        if(idx < final.length*8){
+          v = (final[idx>>3] >> (7-(idx&7))) & 1;
+        }
+        M[r][c] = v; idx++;
+      }
+    }
+    montant = !montant;
+  }
+
+  /* --- masques et pénalités --- */
+  const MASQUE = [
+    (r,c)=>(r+c)%2===0,            (r,c)=>r%2===0,
+    (r,c)=>c%3===0,                (r,c)=>(r+c)%3===0,
+    (r,c)=>(((r>>1)+Math.floor(c/3))%2)===0,
+    (r,c)=>((r*c)%2 + (r*c)%3)===0,
+    (r,c)=>(((r*c)%2 + (r*c)%3)%2)===0,
+    (r,c)=>(((r+c)%2 + (r*c)%3)%2)===0
+  ];
+  function penalite(G){
+    let p = 0;
+    // 1 — séries de 5 et plus
+    for(let i=0;i<N;i++){
+      for(const ligne of [G[i], G.map(r=>r[i])]){
+        let n=1;
+        for(let j=1;j<N;j++){
+          if(ligne[j]===ligne[j-1]) n++;
+          else { if(n>=5) p += 3+(n-5); n=1; }
+        }
+        if(n>=5) p += 3+(n-5);
+      }
+    }
+    // 2 — blocs 2×2
+    for(let r=0;r<N-1;r++) for(let c=0;c<N-1;c++){
+      const v=G[r][c];
+      if(v===G[r][c+1] && v===G[r+1][c] && v===G[r+1][c+1]) p += 3;
+    }
+    // 3 — motif 1:1:3:1:1 entouré de blanc
+    const M1=[1,0,1,1,1,0,1,0,0,0,0], M2=[0,0,0,0,1,0,1,1,1,0,1];
+    for(let r=0;r<N;r++) for(let c=0;c<=N-11;c++){
+      for(const mot of [M1,M2]){
+        let ok=true;
+        for(let k=0;k<11;k++) if(G[r][c+k]!==mot[k]){ ok=false; break; }
+        if(ok) p += 40;
+      }
+    }
+    for(let c=0;c<N;c++) for(let r=0;r<=N-11;r++){
+      for(const mot of [M1,M2]){
+        let ok=true;
+        for(let k=0;k<11;k++) if(G[r+k][c]!==mot[k]){ ok=false; break; }
+        if(ok) p += 40;
+      }
+    }
+    // 4 — équilibre noir/blanc
+    let noirs=0;
+    for(let r=0;r<N;r++) for(let c=0;c<N;c++) if(G[r][c]) noirs++;
+    p += Math.floor(Math.abs(noirs*100/(N*N) - 50)/5)*10;
+    return p;
+  }
+
+  function formatBits(masque){
+    const donnee = (BITS_NIV << 3) | masque;
+    let r = donnee;
+    for(let i=0;i<10;i++) r = (r<<1) ^ ((r>>>9) * 0x537);
+    return ((donnee<<10) | r) ^ 0x5412;
+  }
+  function versionBits(v){
+    let r = v;
+    for(let i=0;i<12;i++) r = (r<<1) ^ ((r>>>11) * 0x1F25);
+    return (v<<12) | r;
+  }
+  const bitDe = (x,i) => (x >>> i) & 1;
+
+  let best = null, bestP = Infinity, bestM = 0;
+  for(let m=0;m<8;m++){
+    const G = M.map(r=>r.slice());
+    for(let r=0;r<N;r++) for(let c=0;c<N;c++)
+      if(!reserve[r][c] && MASQUE[m](r,c)) G[r][c] ^= 1;
+
+    // Format : G[ligne][colonne]. Le premier exemplaire longe le repère
+    // haut-gauche, le second se partage entre bas-gauche et haut-droite.
+    const f = formatBits(m);
+    for(let i=0;i<=5;i++) G[i][8] = bitDe(f,i);
+    G[7][8] = bitDe(f,6);
+    G[8][8] = bitDe(f,7);
+    G[8][7] = bitDe(f,8);
+    for(let i=9;i<15;i++) G[8][14-i] = bitDe(f,i);
+    for(let i=0;i<8;i++)  G[8][N-1-i] = bitDe(f,i);
+    for(let i=8;i<15;i++) G[N-15+i][8] = bitDe(f,i);
+    G[N-8][8] = 1;                                 // module sombre
+
+    if(ver>=7){
+      const vb = versionBits(ver);
+      for(let i=0;i<18;i++){
+        const b = bitDe(vb,i), a = N-11+(i%3), c = Math.floor(i/3);
+        G[c][a] = b;
+        G[a][c] = b;
+      }
+    }
+    const p = penalite(G);
+    if(p < bestP){ bestP = p; best = G; bestM = m; }
+  }
+  return {matrice:best, taille:N, version:ver, masque:bestM, niveau:NIV};
+}
+
+if(typeof module !== "undefined") module.exports = {qrMatrice};
+</script>
+
+<script>
+"use strict";
+
+/* ---------- références de câble ---------- */
+const SERIES = ["74","78","84","86","88","92"];
+const CAPACITES = [8,14,28,56,112,224,448,672,896,1792,2688];
+const CALIBRES = [4,5,6,8];
+
+// Poids du CÂBLE COMPLET en kg par mètre — cuivre, isolant et gaine.
+const POIDS = {
+  "28/4":0.118,"28/6":0.162,"28/8":0.375,
+  "56/4":0.230,"56/6":0.430,"56/8":0.700,
+  "112/4":0.400,"112/5":0.700,"112/6":0.800,"112/8":1.350,
+  "224/4":0.740,"224/5":1.320,"224/6":1.580,"224/8":2.717,
+  "448/4":1.430,"448/5":2.300,"448/6":3.050,"448/8":5.333,
+  "672/4":2.230,"672/8":7.700,
+  "896/4":2.720,"896/5":4.100,"896/6":5.900,
+  "1792/4":5.250,"2688/4":7.740
+};
+
+const ICO = {
+  etiquette:'<path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0l-7.2-7.2A2 2 0 0 1 3 12V5a2 2 0 0 1 2-2h7a2 2 0 0 1 1.4.6l7.2 7.2a2 2 0 0 1 0 2.6Z"/><circle cx="7.5" cy="7.5" r="1.3"/>',
+  cable:'<path d="M4 7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3Z"/><path d="M4 12h16M12 4v16"/>',
+  lot:'<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>',
+  fagot:'<rect x="3" y="7" width="18" height="10" rx="2"/><path d="M8 7v10M16 7v10M3 12h18"/>',
+  grille:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18M12 3v18"/>',
+  oeil:'<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>',
+  imprimer:'<path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>',
+  bluetooth:'<path d="m7 7 10 10-5 5V2l5 5L7 17"/>',
+  poubelle:'<path d="M3 6h18M8 6V4h8v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>'
+};
+const ico = (n,c) => '<svg class="i'+(c?" "+c:"")+'" viewBox="0 0 24 24" aria-hidden="true">'+(ICO[n]||"")+'</svg>';
+const esc = s => String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ent = v => { const n = parseInt(String(v).replace(/[^0-9-]/g,""),10); return isNaN(n)?null:n; };
+const dec = v => { const n = parseFloat(String(v).replace(",",".")); return isNaN(n)?null:n; };
+const fmt = n => isNaN(n)?"—":Math.round(n).toLocaleString("fr-FR");
+const kg  = v => v==null||isNaN(v) ? "—"
+              : v>=1000 ? (v/1000).toFixed(2).replace(".",",")+" t" : Math.round(v)+" kg";
+const $ = id => document.getElementById(id);
+const pause = ms => new Promise(r => setTimeout(r, ms));
+
+/* N'écrit un bloc que si son contenu a changé : sinon le bouton qu'il
+   contient disparaît entre l'appui et le relâchement. */
+const DERNIER = {};
+function poser(id, html){ if(DERNIER[id] === html) return; DERNIER[id] = html; $(id).innerHTML = html; }
+
+/* ---------- mémoire : réglages et numéros déjà imprimés ---------- */
+const CLE = "etq_fagot_m220_v3";
+const LS = (function(){ try{ localStorage.setItem("__t","1"); localStorage.removeItem("__t"); return localStorage; }catch(e){ return null; } })();
+let S = {reglages:{}, histo:{}, imprimante:""};   // histo : "dossier|réf" -> dernier n° imprimé
+function charger(){ try{ if(LS){ const v = LS.getItem(CLE); if(v) S = Object.assign(S, JSON.parse(v)); } }catch(e){} }
+function sauver(){ try{ if(LS) LS.setItem(CLE, JSON.stringify(S)); }catch(e){} }
+
+function lire(){
+  const s = $("serie").value === "autre" ? ($("serieAutre").value.trim() || "88") : $("serie").value;
+  const ref = s+"/"+$("capa").value+"/"+$("cal").value;
+  return {
+    serie:s, capa:+$("capa").value, cal:+$("cal").value, ref,
+    cleP: $("capa").value+"/"+$("cal").value,
+    prefixe: $("prefixe").value.trim(),
+    poi: $("poi").value.trim(),
+    titre: "",
+    bandeau: false,
+    cadre: $("cadre").value === "1",
+    modele: $("modele").value,
+    bigbag: $("contenant").value === "B" || ($("contenant").value === "auto" && +$("capa").value < 56),
+    total: ent($("total").value) || 0,
+    debut: ent($("debut").value) ?? 1,
+    fin:   ent($("fin").value) ?? 1,
+    niveau: $("niveau").value,
+    exemplaires: Math.max(1, Math.min(4, ent($("exemplaires").value)||1)),
+    larg: Math.max(20, Math.min(72, dec($("larg").value)||50)),
+    haut: Math.max(12, Math.min(140, dec($("haut").value)||30)),
+    densite: Math.max(1, Math.min(15, ent($("densite").value)||10)),
+    decal: Math.max(-20, Math.min(20, dec($("decal").value)||0)),
+    decalV: Math.max(-10, Math.min(10, dec($("decalV").value)||0))
+  };
+}
+
+// Total affiché sur l'étiquette (« 2 / 3 ») : la valeur saisie, sinon le plus
+// grand numéro connu pour ce dossier et cette référence.
+const totalDe = E => Math.max(E.total || 0, E.debut, E.fin, (E.total ? 0 : S.histo[cleHisto(E)] || 0));
+const mot = (E, k) => (E.bigbag ? "big bag" : "fagot") + (k > 1 ? "s" : "");
+const identifiant = (E,n) => [E.prefixe, E.poi, E.ref+"-"+n].filter(Boolean).join("-");
+const cleHisto = E => (E.poi||"—")+"|"+E.ref;
+
+/* ===================================================================
+   Dessin de l'étiquette, au point près : 8 points par mm (203 dpi).
+   Ce que montre l'aperçu est exactement ce que reçoit la tête thermique.
+   =================================================================== */
+const PMM = 8;        // points par millimètre
+const ZONE = 4;       // marge blanche du QR, en modules (minimum normatif)
+const BORD = 12;      // marge de l'étiquette, en points (1,5 mm)
+
+function toile(E){
+  const cv = document.createElement("canvas");
+  cv.width = Math.round(E.larg*PMM); cv.height = Math.round(E.haut*PMM);
+  const g = cv.getContext("2d");
+  g.fillStyle = "#fff"; g.fillRect(0,0,cv.width,cv.height);
+  g.fillStyle = "#000"; g.textAlign = "center"; g.textBaseline = "middle";
+  return {cv, g, W:cv.width, H:cv.height};
+}
+
+// L'identifiant se coupe aux tirets ; un morceau trop long est coupé au caractère.
+function couper(g, id, tw){
+  const jetons = id.split("-").map((s,i,a)=> i<a.length-1 ? s+"-" : s).filter(s=>s!=="");
+  const lignes = []; let cur = "";
+  for(let j of jetons){
+    if(cur && g.measureText(cur+j).width > tw){ lignes.push(cur); cur = ""; }
+    while(j.length > 1 && g.measureText(j).width > tw){
+      let k = j.length-1;
+      while(k > 1 && g.measureText(j.slice(0,k)).width > tw) k--;
+      lignes.push(j.slice(0,k)); j = j.slice(k);
+    }
+    cur += j;
+  }
+  if(cur) lignes.push(cur);
+  return lignes;
+}
+
+function etiquette(E, n){ return E.modele === "Q" ? etiquetteQR(E, n) : etiquetteBandeau(E, n); }
+
+/* Modèle « bandeau » : identifiant en haut à gauche (préfixe en cartouche),
+   QR en haut à droite, et en bas un bandeau avec le numéro en très grand
+   et la référence du câble. Le contenu est strictement celui du QR. */
+function etiquetteBandeau(E, n){
+  const {cv, g, W, H} = toile(E);
+  const id = identifiant(E, n);
+  const q = qrMatrice(id, E.niveau);
+  const unites = q.taille + 2*ZONE;
+  const P = 'px Roboto, "Helvetica Neue", Arial, sans-serif';
+  const b = 9;                                   // marge intérieure
+  const rond = (x,y,w,h,r) => { g.beginPath(); if(g.roundRect) g.roundRect(x,y,w,h,r); else g.rect(x,y,w,h); };
+  // texte resserré si besoin pour tenir dans maxW ; renvoie le facteur appliqué
+  const ecrire = (txt, x, y, police, maxW, align) => {
+    g.font = police; g.textAlign = align || "left";
+    const s = Math.min(1, maxW / g.measureText(txt).width);
+    g.save(); g.translate(x, y); g.scale(s, 1); g.fillText(txt, 0, 0); g.restore();
+    return s;
+  };
+  if(E.cadre){ g.lineWidth = 3; rond(5.5, 5.5, W-11, H-11, 12); g.stroke(); }
+
+  const bandeH = Math.round(H*0.235), yB = H - b - bandeH;      // bandeau du bas
+  const mod = Math.max(2, Math.floor(Math.min(yB - b - 2, W - 2*b - Math.max(110, W*0.34)) / unites));
+  const cote = mod*unites, x0 = W - b - cote, y0 = b + Math.round((yB - b - cote)/2);
+  for(let r=0;r<q.taille;r++) for(let c=0;c<q.taille;c++)
+    if(q.matrice[r][c]) g.fillRect(x0+(c+ZONE)*mod, y0+(r+ZONE)*mod, mod, mod);
+
+  const xd = x0 - 2;                              // séparation verticale
+  g.fillRect(b+3, yB, W-2*b-6, 2);
+  g.fillRect(xd, b+6, 2, yB-b-12);
+  g.fillRect(xd, yB+9, 2, bandeH-18);
+
+  // --- préfixe en cartouche, dossier, puis référence du câble. Chaque donnée
+  //     apparaît une fois, sans tiret en bout de ligne ; l'identifiant complet est dans le QR.
+  const xl = b+5, wl = xd - 7 - xl, hTop = yB - b - 10;
+  const pre = E.prefixe, dos = E.poi;
+  const u = (pre ? 1.25 : 0) + (dos ? 1.25 : 0) + 1.95;
+  let fs = 40;
+  for(; fs > 10; fs--){
+    g.font = "700 "+fs+P;
+    const large = Math.max(dos ? g.measureText(dos).width : 0, g.measureText(E.ref).width);
+    if(large*0.72 <= wl && u*fs <= hTop) break;
+  }
+  let y = b + 5 + (hTop - u*fs)/2, sMin = 1;
+  if(pre){
+    const hp = Math.round(fs*1.02), fp = Math.round(fs*0.74);
+    g.font = "700 "+fp+P;
+    const wp = Math.min(wl, g.measureText(pre).width + 16);
+    rond(xl-2, y, wp, hp, 6); g.fill();
+    g.fillStyle = "#fff"; ecrire(pre, xl-2 + wp/2, y + hp/2 + 1, "700 "+fp+P, wp - 12, "center"); g.fillStyle = "#000";
+    y += fs*1.25;
+  }
+  if(dos){ sMin = ecrire(dos, xl, y + fs*0.58, "700 "+fs+P, wl); y += fs*1.25; }
+  g.fillRect(xl, Math.round(y), wl, 2);
+  ecrire("RÉF. CÂBLE", xl, y + fs*0.45, "700 "+Math.max(13, Math.round(fs*0.42))+P, wl);
+  sMin = Math.min(sMin, ecrire(E.ref, xl, y + fs*1.36, "700 "+fs+P, wl));
+
+  // --- bandeau : N° en cartouche, numéro en très grand, référence à droite
+  const hb = bandeH - 14, yc = yB + 2 + (bandeH-2)/2, wb = Math.round(hb*1.08);
+  rond(xl-2, yc - hb/2, wb, hb, 7); g.fill();
+  g.fillStyle = "#fff"; ecrire("N°", xl-2 + wb/2, yc + 1, "800 "+Math.round(hb*0.6)+P, wb - 8, "center"); g.fillStyle = "#000";
+  const xn = xl - 2 + wb + 9;
+  ecrire(String(n), xn, yc + 2, "800 "+Math.round(hb*1.2)+P, xd - 8 - xn);
+  const xr = xd + 10, wr = W - b - 6 - xr;
+  ecrire(E.bigbag ? "BIG BAG" : "FAGOT", xr, yc - hb*0.3, "700 "+Math.round(hb*0.36)+P, wr);
+  ecrire(n + " / " + totalDe(E), xr, yc + hb*0.24, "700 "+Math.round(hb*0.6)+P, wr);
+  g.textAlign = "center";
+  return {cv, id, q, mod, mm:mod/PMM, police:fs*Math.sqrt(sMin)};
+}
+
+function etiquetteQR(E, n){
+  const {cv, g, W, H} = toile(E);
+  const id = identifiant(E, n);
+  const q = qrMatrice(id, E.niveau);
+  const unites = q.taille + 2*ZONE;
+  // Un module = un nombre entier de points : pas de module flou à la lecture.
+  // Contour noir : à 0,6 mm du bord, pour rester visible malgré un léger décalage.
+  const m = E.cadre ? 10 : 0;
+  if(E.cadre){
+    g.lineWidth = 3; g.beginPath();
+    if(g.roundRect) g.roundRect(5.5, 5.5, W-11, H-11, 12); else g.rect(5.5, 5.5, W-11, H-11);
+    g.stroke();
+  }
+  // Le QR prend toute la place possible, en gardant au moins 30 % de la largeur pour le texte.
+  const mod = Math.max(2, Math.floor(Math.min(H - 8 - 2*m, W - 2*m - Math.max(96, W*0.3)) / unites));
+  const cote = mod*unites;
+  const x0 = W - cote - 4 - m, y0 = Math.round((H - cote)/2);
+  for(let r=0;r<q.taille;r++) for(let c=0;c<q.taille;c++)
+    if(q.matrice[r][c]) g.fillRect(x0+(c+ZONE)*mod, y0+(r+ZONE)*mod, mod, mod);
+
+  // Texte : coupé uniquement aux tirets, une seule taille pour tout l'identifiant.
+  // Si une ligne dépasse, on resserre les lettres (jusqu'à 72 %) plutôt que de la couper.
+  const POLICE = 'px Roboto, "Helvetica Neue", Arial, sans-serif', SERRE = 0.72;
+  const gauche = BORD + m/4, tw = x0 - gauche, th = H - 2*(BORD + m/2);
+  const jetons = id.split("-").map((s,i,a)=> i<a.length-1 ? s+"-" : s).filter(Boolean);
+  // Le numéro de fin ne se retrouve jamais seul sur une ligne.
+  if(jetons.length > 1){ const fin = jetons.pop(); jetons[jetons.length-1] += fin; }
+  const refTxt = "Ref: "+E.ref, numTxt = "N° "+n;
+  let L = [], fs = 34, s = 1;
+  for(; fs >= 10; fs--){
+    g.font = "700 "+fs+POLICE;
+    L = []; let cur = "";
+    for(const j of jetons){
+      if(cur && g.measureText(cur+j).width*0.8 > tw){ L.push(cur); cur = ""; }
+      cur += j;
+    }
+    if(cur) L.push(cur);
+    L.push(refTxt);
+    const large = Math.max(...L.map(x => g.measureText(x).width));
+    if(large*SERRE <= tw && (L.length*1.2 + 1.7)*fs <= th){ s = Math.min(1, tw/large); break; }
+  }
+  // Le numéro, ce qu'on cherche des yeux sur le fagot, prend la hauteur qui reste.
+  let nfs = Math.round(Math.min(fs*2.2, (th - L.length*1.2*fs)/1.15));
+  for(; nfs > fs; nfs--){ g.font = "800 "+nfs+POLICE; if(g.measureText(numTxt).width <= tw) break; }
+  const haut = L.length*1.2*fs + nfs*1.15, cx = gauche + tw/2;
+  let y = (H - haut)/2;
+  g.font = "700 "+fs+POLICE;
+  for(const x of L){
+    g.save(); g.translate(cx, y + fs*0.6); g.scale(s, 1); g.fillText(x, 0, 0); g.restore();
+    y += fs*1.2;
+  }
+  g.font = "800 "+nfs+POLICE;
+  g.fillText(numTxt, cx, y + nfs*0.6);
+  return {cv, id, q, mod, mm:mod/PMM, police:fs*Math.sqrt(s)};
+}
+
+function etiquetteTete(E){
+  const {cv, g, W, H} = toile(E);
+  g.lineWidth = 6; g.strokeRect(BORD, BORD, W-2*BORD, H-2*BORD);
+  const tw = W - 4*BORD;
+  const ecrire = (t, y, max) => {
+    let fs = max;
+    for(; fs > 12; fs--){ g.font = "bold "+fs+"px Arial, Helvetica, sans-serif"; if(g.measureText(t).width <= tw) break; }
+    g.fillText(t, W/2, y);
+  };
+  ecrire(E.titre || "NOUVELLE SERIE", H*0.36, Math.round(H*0.2));
+  ecrire(E.ref, H*0.66, Math.round(H*0.26));
+  return {cv};
+}
+
+// Cadre au bord exact de l'étiquette + repères : sert à régler les décalages.
+function etiquetteCalib(E){
+  const {cv, g, W, H} = toile(E);
+  g.lineWidth = 2; g.strokeRect(1,1,W-2,H-2);
+  g.strokeRect(2*PMM, 2*PMM, W-4*PMM, H-4*PMM);
+  g.fillRect(W/2-1, H/2-20, 2, 40); g.fillRect(W/2-20, H/2-1, 40, 2);
+  g.font = "bold 22px Arial, Helvetica, sans-serif";
+  g.fillText("HAUT", W/2, 4*PMM+4); g.fillText(E.larg+" × "+E.haut+" mm", W/2, H-4*PMM-4);
+  g.fillText("G", 5*PMM, H/2); g.fillText("D", W-5*PMM, H/2);
+  return {cv};
+}
+
+/* ===================================================================
+   Phomemo M220 — protocole des séries M (M110, M120, M220).
+   Un travail = vitesse, noirceur, type de papier, image en trame, fin.
+   =================================================================== */
+const TETE = 576;     // largeur de la tête d'impression, en points (72 mm)
+function travail(cv, densite, decalMm, decalV){
+  // La tête fait 72 mm et le rouleau est centré dessous : on envoie des lignes
+  // à la largeur de la tête, l'étiquette au milieu. Les décalages déplacent
+  // l'image sans la rogner tant qu'elle reste sous la tête.
+  const W = cv.width, H = cv.height, LW = Math.max(W, TETE), oct = LW/8;
+  const px = cv.getContext("2d").getImageData(0,0,W,H).data;
+  const dx = Math.round((LW - W)/2 + decalMm*PMM), dy = Math.round((decalV||0)*PMM);
+  const trame = new Uint8Array(oct*H);
+  for(let y=0;y<H;y++) for(let x=0;x<W;x++){
+    const X = x + dx, Y = y + dy;
+    if(X < 0 || X >= LW || Y < 0 || Y >= H) continue;
+    const i = (y*W + x)*4;
+    if(px[i]*0.299 + px[i+1]*0.587 + px[i+2]*0.114 < 140) trame[Y*oct + (X>>3)] |= 0x80 >> (X&7);
+  }
+  const tete = [0x1b,0x4e,0x0d,0x05,            // vitesse 5
+                0x1b,0x4e,0x04,densite,         // noirceur
+                0x1f,0x11,0x0a,                 // étiquettes séparées par un espace
+                0x1d,0x76,0x30,0x00, oct&255, oct>>8, H&255, H>>8];
+  const fin = [0x1f,0xf0,0x05,0x00, 0x1f,0xf0,0x03,0x00];
+  const buf = new Uint8Array(tete.length + trame.length + fin.length);
+  buf.set(tete,0); buf.set(trame,tete.length); buf.set(fin,tete.length+trame.length);
+  return buf;
+}
+
+/* ---------- liaison Bluetooth ---------- */
+const JOURNAL = [];
+function log(m){ JOURNAL.push(m); if(JOURNAL.length > 60) JOURNAL.shift(); }
+const SERVICES = [0xff00, 0xae30, 0xae00, 0xfee7, 0x18f0, 0xffe0, 0xfff0, 0xffb0, 0xff10, 0xff80, 0xfe00, 0xfee0, 0xeee0, 0xaf30, 0xa0ff, 0xab00,
+  "0000ff00-0000-1000-8000-00805f9b34fb", "6e400001-b5a3-f393-e0a9-e50e24dcca9e",
+  "49535343-fe7d-4ae5-8fa9-9fafd205e455", "e7810a71-73ae-499d-8c15-faa9aef0c3f2"];
+const BT = {dev:null, car:null, paquet:100};
+const btDispo = !!(navigator.bluetooth && navigator.bluetooth.requestDevice);
+let occupe = false, stop = false;
+
+function etat(txt, sub, cls){
+  $("etatTxt").textContent = txt; $("etatSub").textContent = sub || "";
+  $("pastille").className = "pastille" + (cls ? " "+cls : "");
+}
+const connecte = () => !!(BT.car && BT.dev && BT.dev.gatt && BT.dev.gatt.connected);
+function majEtat(){
+  if(connecte()) etat("Connectée", BT.dev.name || "Phomemo", "ok");
+  else etat("Non connectée", S.imprimante ? "dernière : "+S.imprimante : "");
+  $("btnConn").innerHTML = ico("bluetooth","sm") + (connecte() ? "Changer d'imprimante" : "Connecter l'imprimante");
+}
+
+async function ouvrir(dev){
+  // Sur Android la liaison tombe souvent juste après s'être ouverte :
+  // on réessaie plusieurs fois, en laissant le temps à la liaison de se poser.
+  let services = null, derniere = null;
+  for(let essai=0; essai<5 && !services; essai++){
+    try{
+      etat("Connexion… essai "+(essai+1)+" / 5", dev.name || "", "att");
+      if(dev.gatt.connected && essai > 0){ dev.gatt.disconnect(); await pause(400); }
+      log("essai "+(essai+1)+" : connexion à "+(dev.name||"?"));
+      const srv = await dev.gatt.connect();
+      log("liaison ouverte");
+      await pause(500 + essai*300);
+      try{ services = [await srv.getPrimaryService(0xff00)]; }
+      catch(e){ log("service ff00 : "+e.message); if(!dev.gatt.connected) throw e; services = await srv.getPrimaryServices(); }
+      log("services : "+services.map(s=>s.uuid.slice(4,8)).join(" "));
+    }catch(e){ log("échec : "+e.message); derniere = e; services = null; await pause(700); }
+  }
+  if(!services) throw new Error("la liaison retombe aussitôt ouverte (" + ((derniere && derniere.message) || "sans détail")
+    + "). Fermez l'application Phomemo et retirez l'imprimante des appareils Bluetooth associés du téléphone, puis réessayez.");
+  let car = null, secours = null;
+  for(const s of services){
+    let cs = []; try{ cs = await s.getCharacteristics(); }catch(e){}
+    for(const c of cs){
+      const p = c.properties;
+      log(" "+s.uuid.slice(4,8)+"/"+c.uuid.slice(4,8)+" :"+(p.write?" écrit":"")+(p.writeWithoutResponse?" écrit-sans-rép":"")+(p.notify?" notifie":"")+(p.read?" lit":""));
+      if(p.notify || p.indicate){
+        try{ await c.startNotifications(); }catch(e){}
+      }
+      const ecrit = c.properties.write || c.properties.writeWithoutResponse;
+      if(!ecrit) continue;
+      if(c.uuid.slice(4,8) === "ff02") car = c;
+      else if(!secours) secours = c;
+    }
+  }
+  car = car || secours;
+  log(car ? "canal choisi : "+car.uuid.slice(4,8) : "aucun canal d'écriture");
+  if(!car) throw new Error("aucun canal d'écriture trouvé sur cet appareil");
+  if(BT.dev !== dev) dev.addEventListener("gattserverdisconnected", () => { log("liaison coupée par l'imprimante"); BT.car = null; majEtat(); });
+  BT.dev = dev; BT.car = car; BT.paquet = 100;
+  S.imprimante = dev.name || "Phomemo"; sauver();
+}
+
+// Se reconnecte seule à l'imprimante déjà autorisée ; sinon ouvre la liste.
+async function connecter(forcerChoix){
+  if(!btDispo) throw new Error("Bluetooth indisponible dans ce navigateur");
+  if(connecte() && !forcerChoix) return;
+  etat("Connexion…", "", "att");
+  if(!forcerChoix){
+    let dev = BT.dev;
+    if(!dev && navigator.bluetooth.getDevices){
+      try{ const ds = await navigator.bluetooth.getDevices();
+           dev = ds.find(d => d.name === S.imprimante) || ds[0] || null; }catch(e){}
+    }
+    if(dev){ try{ await ouvrir(dev); majEtat(); return; }catch(e){} }
+  }
+  if(BT.dev && BT.dev.gatt.connected) BT.dev.gatt.disconnect();
+  const dev = await navigator.bluetooth.requestDevice({acceptAllDevices:true, optionalServices:SERVICES});
+  await ouvrir(dev); majEtat();
+}
+
+async function envoyer(buf){
+  const c = BT.car, avecRep = c.properties.write;
+  log("envoi de "+buf.length+" octets, "+(avecRep?"avec":"sans")+" réponse, paquets de "+BT.paquet);
+  let i = 0;
+  while(i < buf.length){
+    const part = buf.subarray(i, i + BT.paquet);
+    try{
+      if(avecRep) await c.writeValueWithResponse(part);
+      else { await c.writeValueWithoutResponse(part); await pause(18); }
+      i += part.length;
+    }catch(e){
+      // Certaines liaisons n'acceptent que de petits paquets : on réduit et on reprend.
+      log("erreur à l'octet "+i+" : "+e.message);
+      if(BT.paquet > 20 && connecte()){ BT.paquet = 20; continue; }
+      throw e;
+    }
+  }
+  log("envoi terminé");
+}
+
+async function imprimerSerie(toiles, E, libelle){
+  if(window.UI) UI.etape("connexion", 0, toiles.length, toiles[0], libelle, toiles);   // interface
+  await connecter(false);
+  let k = 0;
+  for(;k<toiles.length;k++){
+    if(stop){ log("arrêt demandé après "+k+" étiquette(s)"); break; }
+    etat("Impression "+(k+1)+" / "+toiles.length, libelle || "", "att");
+    if(window.UI) UI.etape("envoi", k, toiles.length, toiles[k], libelle);   // interface
+    await envoyer(travail(toiles[k], E.densite, E.decal, E.decalV));
+    if(window.UI) UI.envoye(k+1, toiles.length);                              // interface
+    await pause(350);
+  }
+  majEtat();
+  return k;
+}
+
+function serieToiles(E){
+  const n1 = Math.min(E.debut, E.fin), n2 = Math.max(E.debut, E.fin);
+  const t = []; t.nums = [];
+  if(E.bandeau){ t.push(etiquetteTete(E).cv); t.nums.push(0); }
+  for(let n=n1;n<=n2;n++){
+    const cv = etiquette(E, n).cv;
+    for(let e=0;e<E.exemplaires;e++){ t.push(cv); t.nums.push(n); }
+  }
+  return t;
+}
+
+function alerte(msg){
+  poser("btAlerte", msg ? '<div class="verdict stop"><b>Impression interrompue</b><ul><li>'+esc(msg)+'</li></ul></div>' : "");
+}
+function enregistrer(E, jusqua){
+  const n2 = jusqua != null ? jusqua : Math.max(E.debut, E.fin), cle = cleHisto(E);
+  if(E.poi && n2 > 0){ S.histo[cle] = Math.max(S.histo[cle]||0, n2); S.dates = S.dates || {}; S.dates[cle] = Date.now(); }
+  sauver();
+}
+
+/* ---------- rendu ---------- */
+function ouvrirFeuille(id){
+  const sel = $(id), o = $("fOpts");
+  $("fTitre").textContent = document.querySelector('label[for="'+id+'"]').textContent;
+  o.textContent = "";
+  for(const op of sel.options){
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "puce"; b.dataset.sel = id; b.dataset.val = op.value; b.textContent = op.textContent;
+    o.appendChild(b);
+  }
+  $("feuille").hidden = false; majPuces();
+}
+function fermerFeuille(){ $("feuille").hidden = true; $("fOpts").textContent = ""; }
+function majPuces(){
+  document.querySelectorAll(".selbtn").forEach(b => { const s = $(b.dataset.ouvre); b.textContent = s.options[s.selectedIndex].textContent; });
+  document.querySelectorAll(".puce").forEach(b => {
+    const on = $(b.dataset.sel).value === b.dataset.val;
+    b.classList.toggle("on", on); b.setAttribute("aria-pressed", on);
+  });
+}
+function rendre(){
+  majPuces();
+  const E = lire();
+  $("champAutre").style.display = $("serie").value === "autre" ? "" : "none";
+  $("refAff").textContent = E.ref;
+
+  const kgm = POIDS[E.cleP];
+  poser("infoPoids", kgm
+    ? '<p class="note">'+kgm.toFixed(3).replace(".",",")+' kg par mètre · '+mot(E,2)+'.</p>'
+    : '<div class="verdict warn"><b>Poids inconnu pour cette composition</b><ul><li>Le '+E.capa+' paires en '+E.cal+'/10 ne figure pas dans la table. Les étiquettes se génèrent normalement, mais le calcul par les mètres n\'est pas disponible.</li></ul></div>');
+
+  const m = dec($("metres").value);
+  if(m > 0 && kgm){
+    const p = kgm*m;
+    const choix = E.bigbag ? [[400,"400 kg"]] : [[500,"500 kg"],[1000,"1 tonne"]];
+    poser("calcFagots", '<div class="verdict ok"><b>Masse estimée : '+kg(p)+'</b> pour '+fmt(m)+' m'
+      + choix.map(([lim,nom]) => { const n = Math.max(1, Math.ceil(p/lim));
+          return '<div class="choix"><div><strong>'+n+' '+mot(E,n)+'</strong><span>de '+nom+' maximum</span></div>'
+            + '<button class="btn sm" data-plage="'+n+'">Utiliser</button></div>'; }).join("")
+      + '</div>');
+  } else poser("calcFagots", "");
+
+  const der = S.histo[cleHisto(E)];
+  poser("histo", der
+    ? '<div class="verdict warn"><b>Numéros déjà utilisés : n° 1 à '+der+'</b><ul>'
+      + '<li>La série suivante doit commencer au n° '+(der+1)+'. Deux contenants au même numéro ne peuvent plus être distingués.</li></ul>'
+      + '<div class="btnrow" style="margin-top:10px">'
+      + '<button class="btn sm" id="btnSuite">Reprendre au n° '+(der+1)+'</button>'
+      + '<button class="btn sm" id="btnRaz">'+ico("poubelle","sm")+'Effacer</button></div></div>'
+    : '');
+
+  const n1 = Math.min(E.debut, E.fin), n2 = Math.max(E.debut, E.fin);
+  const total = n2 - n1 + 1;
+
+  const ex = etiquette(E, n1);
+  poser("sortieId",
+      '<label>Contenu du QR</label><div class="contenu">'+esc(ex.id)+'</div>'
+    + '<button class="aide" type="button" aria-label="Aide">?</button><p class="note repli" hidden>Version '+ex.q.version+' · '+ex.q.taille+'×'+ex.q.taille+' modules · correction '
+    + ex.q.niveau+' · '+ex.mm.toFixed(2).replace(".",",")+' mm par module.</p>'
+    + (ex.mm < 0.5
+        ? '<div class="verdict stop"><b>Modules trop petits</b><ul><li>En dessous de 0,5 mm par module, un lecteur de QR décroche. Prenez une étiquette plus grande, ou passez la correction à M.</li></ul></div>'
+        : "")
+    + (ex.police < 16
+        ? '<div class="verdict warn"><b>Texte très petit</b><ul><li>L\'identifiant est long pour cette étiquette : le texte tombe sous 2 mm de haut.</li></ul></div>'
+        : "")
+    + (der && n1 <= der
+        ? '<div class="verdict stop"><b>Numéros déjà utilisés</b><ul><li>Les n° '+n1+' à '+Math.min(n2,der)+' ont déjà été imprimés pour ce dossier. Reprenez au n° '+(der+1)+'.</li></ul></div>'
+        : ""));
+
+  const ap = $("apercu"); ap.textContent = "";
+  if(E.bandeau) ap.appendChild(etiquetteTete(E).cv);
+  ap.appendChild(ex.cv);
+
+  const etiq = total*E.exemplaires + (E.bandeau ? 1 : 0);
+  $("lblEx").textContent = "Étiquettes par " + mot(E,1);
+  $("total").placeholder = "auto : " + totalDe(Object.assign({}, E, {total:0}));
+  $("compte").textContent = total + " " + mot(E,total) + " · n° " + n1 + " à " + n2
+    + " · " + etiq + " étiquette" + (etiq>1?"s":"") + " sur le rouleau"
+    + " · " + E.larg + " × " + E.haut + " mm";
+
+  const dc = $("dockCount"), doublon = !!(der && n1 <= der);
+  dc.textContent = etiq + " étiquette" + (etiq>1?"s":"") + " · n° " + n1 + (n2>n1 ? " à " + n2 : "");
+  dc.className = "";
+  document.body.classList.toggle("dock-doublon", doublon);
+  if(doublon){
+    $("dockSuiteTxt").textContent = (der>1 ? "N° 1 à " + der : "N° 1") + " déjà imprimés";
+    $("dockSuite").textContent = "Reprendre au n° " + (der+1);
+  }
+  $("resEtiquette").textContent = E.larg + " × " + E.haut + " mm";
+  $("resImprimante").textContent = S.imprimante || "à connecter";
+
+  S.reglages = {serie:$("serie").value, serieAutre:$("serieAutre").value, capa:$("capa").value,
+    cal:$("cal").value, prefixe:E.prefixe, poi:E.poi,
+    niveau:E.niveau, exemplaires:$("exemplaires").value, larg:$("larg").value, haut:$("haut").value,
+    densite:$("densite").value, decal:$("decal").value, decalV:$("decalV").value, cadre:$("cadre").value, modele:$("modele").value, contenant:$("contenant").value};
+  sauver();
+  if(window.UI) UI.maj(E);   // interface : mise à jour des écrans
+}
+
+/* ---------- mise en place ---------- */
+$("serie").innerHTML = SERIES.map(s=>'<option value="'+s+'"'+(s==="88"?" selected":"")+'>'+s+'</option>').join("")
+  + '<option value="autre">Autre…</option>';
+$("capa").innerHTML = CAPACITES.map(c=>'<option value="'+c+'"'+(c===224?" selected":"")+'>'+c+'</option>').join("");
+$("cal").innerHTML = CALIBRES.map(c=>'<option value="'+c+'"'+(c===6?" selected":"")+'>'+c+'/10</option>').join("");
+
+charger();
+if(S.reglages && S.reglages.capa){
+  const r = S.reglages;
+  const mettre = (id,v)=>{ const el=$(id); if(el && v!=null && v!=="") el.value = v; };
+  ["serie","serieAutre","capa","cal","prefixe","poi","titre","niveau","exemplaires","larg","haut","densite","decal","decalV","cadre","modele","contenant"]
+    .forEach(k => mettre(k, r[k]));
+  mettre("avecBandeau", r.bandeau);
+}
+
+document.querySelectorAll("select").forEach(sel => {
+  if(sel.closest(".g3")){                        // série, paires, calibre : bouton compact qui ouvre le panneau
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "selbtn"; b.dataset.ouvre = sel.id;
+    sel.style.display = "none"; sel.after(b); return;
+  }
+  const d = document.createElement("div"); d.className = "puces" + (sel.options.length > 4 ? " grille" : ""); d.setAttribute("role", "group");
+  for(const o of sel.options){
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "puce"; b.dataset.sel = sel.id; b.dataset.val = o.value; b.textContent = o.textContent;
+    d.appendChild(b);
+  }
+  sel.style.display = "none"; sel.after(d);
+});
+$("icoLogo").innerHTML = ico("etiquette");
+$("ic1").innerHTML = ico("cable");   $("ic2").innerHTML = ico("lot");
+$("ic3").innerHTML = ico("fagot");   $("ic4").innerHTML = ico("bluetooth");
+$("ic5").innerHTML = ico("grille"); $("ic7").innerHTML = ico("cable");  $("ic6").innerHTML = ico("oeil");
+$("btnImp").innerHTML = ico("imprimer")+"Imprimer";
+if(!S.imprimante) $("detImprimante").open = true;   // première utilisation : la connexion est à portée de main
+majEtat();
+
+if(!btDispo){
+  poser("btAlerte", '<div class="verdict warn"><b>Bluetooth direct indisponible ici</b><ul>'
+    + '<li>Ouvrez cette page avec Chrome ou Edge, sur Android ou sur ordinateur. Safari sur iPhone ne donne pas accès au Bluetooth.</li></ul></div>');
+  $("btnConn").disabled = true; $("btnTest").disabled = true;
+}
+
+async function lancer(fn){
+  if(occupe) return;
+  occupe = true; stop = false; alerte(""); $("btnImp").style.display = "none"; $("btnStop").style.display = "";
+  let erreur = null;                                // interface
+  try{ await fn(); }
+  catch(e){
+    erreur = e;                                     // interface
+    majEtat();
+    if(!(e && e.name === "NotFoundError")) alerte((e && e.message) || String(e));   // liste fermée sans choix : rien à signaler
+  }
+  occupe = false; $("btnImp").style.display = ""; $("btnStop").style.display = "none";
+  if(window.UI) UI.fin(erreur);                     // interface
+}
+
+document.addEventListener("click", e=>{
+  const rp = e.target.closest(".note.repli"); if(rp){ rp.hidden = true; return; }
+  if(e.target.id === "fFond"){ fermerFeuille(); return; }
+  const t = e.target.closest("button"); if(!t) return;
+  if(t.classList.contains("aide")){ const n = t.nextElementSibling; n.hidden = !n.hidden; return; }
+  if(t.dataset.ouvre){ ouvrirFeuille(t.dataset.ouvre); return; }
+  if(t.id === "fFermer"){ fermerFeuille(); return; }
+  if(t.dataset.sel){ $(t.dataset.sel).value = t.dataset.val; fermerFeuille(); rendre(); return; }
+  if(t.dataset.pas){
+    const [id, d] = t.dataset.pas.split(":"), el = $(id);
+    el.value = Math.max(1, (ent(el.value) || 1) + (+d));
+    rendre(); return;
+  }
+  const E = lire();
+  if(t.id === "btnR40" || t.id === "btnR50"){ $("larg").value = t.id === "btnR40" ? 40 : 50; $("haut").value = 30; rendre(); return; }
+  if(t.id === "btnStop"){ stop = true; etat("Arrêt…", "après l'étiquette en cours", "att"); return; }
+  if(t.id === "btnCalib"){ lancer(() => imprimerSerie([etiquetteCalib(E).cv], E, "calibrage")); return; }
+  if(t.id === "btnConn"){ lancer(() => connecter(connecte())); return; }
+  if(t.id === "btnTest"){
+    lancer(() => imprimerSerie([etiquette(E, Math.min(E.debut,E.fin)).cv], E, "essai"));
+    return;
+  }
+  if(t.id === "btnImp"){
+    const deja = S.histo[cleHisto(E)] || 0, n1 = Math.min(E.debut, E.fin);
+    if(deja && n1 <= deja && !confirm("Les n° "+n1+" à "+Math.min(Math.max(E.debut,E.fin), deja)+" ont déjà été imprimés pour ce dossier.\nLes réimprimer quand même ?")) return;
+    lancer(async () => {
+      const ts = serieToiles(E), k = await imprimerSerie(ts, E, E.ref);
+      // Arrêt en cours de série : seuls les numéros réellement sortis sont enregistrés.
+      if(k >= ts.length) enregistrer(E);
+      else {
+        const der = Math.max(0, ...ts.nums.slice(0,k));
+        enregistrer(E, der);
+        poser("btAlerte", '<div class="verdict warn"><b>Impression arrêtée</b><ul><li>'+k+' étiquette'+(k>1?'s':'')+' sur '+ts.length
+          + ' envoyée'+(k>1?'s':'')+(der?' · dernier n° sorti : '+der:'')+'. L\'étiquette en cours se termine toujours.</li></ul></div>');
+      }
+      rendre();
+    });
+    return;
+  }
+  if(t.id === "dockSuite"){ const b = $("btnSuite"); if(b) b.click(); return; }
+  if(t.id === "btnSuite"){
+    const der = S.histo[cleHisto(E)] || 0;
+    const n = Math.max(1, Math.abs(E.fin - E.debut) + 1);
+    $("debut").value = der+1; $("fin").value = der+n;
+    rendre(); return;
+  }
+  if(t.id === "btnRaz"){
+    if(!confirm("Effacer les numéros déjà imprimés pour ce dossier et cette référence ?")) return;
+    delete S.histo[cleHisto(E)]; sauver(); rendre(); return;
+  }
+  if(t.dataset.plage){
+    const der = S.histo[cleHisto(E)] || 0, n = +t.dataset.plage;
+    $("debut").value = der+1; $("fin").value = der+n;
+    rendre(); return;
+  }
+});
+// Un appui sur le message le referme.
+$("btAlerte").addEventListener("click", ev => { if(!ev.target.closest("button")) poser("btAlerte", ""); });
+document.addEventListener("input", rendre);
+document.addEventListener("change", rendre);
+rendre();
+</script>
+<script>
+/* ===================================================================
+   Interface 2026 — navigation, écrans, panneau d'impression.
+   Ce script ne dessine aucune étiquette et ne parle pas à l'imprimante :
+   il lit l'état du script principal et appelle ses fonctions telles quelles.
+   =================================================================== */
+"use strict";
+(function(){
+  const qsa = s => Array.from(document.querySelectorAll(s));
+
+  /* ---------- icônes de l'interface ---------- */
+  const UICO = {
+    accueil:'<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5"/>',
+    creer:'<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5M12 11v6M9 14h6"/>',
+    liste:'<path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>',
+    modeles:'<rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M3 9h18M9 9v12"/>',
+    reglages:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/>',
+    imprimer:ICO.imprimer, oeil:ICO.oeil, poubelle:ICO.poubelle, dossier:ICO.lot,
+    chevron:'<path d="m9 6 6 6-6 6"/>',
+    retour:'<path d="M19 12H5M12 19l-7-7 7-7"/>',
+    copier:'<rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>',
+    info:'<circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/>',
+    chercher:'<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
+    coche:'<path d="M20 6 9 17l-5-5"/>',
+    croix:'<path d="M18 6 6 18M6 6l12 12"/>',
+    modifier:'<path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>',
+    terminal:'<path d="m4 17 6-5-6-5M12 19h8"/>'
+  };
+  const uico = (n,c) => '<svg class="i'+(c?" "+c:"")+'" viewBox="0 0 24 24" aria-hidden="true">'+(UICO[n]||"")+'</svg>';
+  qsa("i[data-i]").forEach(el => { el.outerHTML = uico(el.dataset.i, el.dataset.c); });
+
+  /* ---------- navigation entre écrans ---------- */
+  const ECR = {};
+  qsa(".ecran").forEach(s => { ECR[s.dataset.ecran] = s; });
+  let courant = null, pile = 0;
+  const nomHash = () => { const h = location.hash.replace("#",""); return ECR[h] ? h : "accueil"; };
+
+  function afficher(nom){
+    if(!ECR[nom]) nom = "accueil";
+    courant = nom;
+    for(const k in ECR) ECR[k].classList.toggle("actif", k === nom);
+    document.body.classList.toggle("avec-dock", ECR[nom].hasAttribute("data-dock"));
+    const onglet = ECR[nom].dataset.nav || "";
+    qsa(".nav [data-onglet]").forEach(b => {
+      const on = b.dataset.onglet === onglet;
+      b.classList.toggle("on", on);
+      if(on) b.setAttribute("aria-current","page"); else b.removeAttribute("aria-current");
+    });
+    window.scrollTo(0,0);
+    maj(lire());
+    if(window.UI && UI.apresEcran) UI.apresEcran(nom);
+  }
+  function aller(nom){
+    if(nom === courant) return;
+    history.pushState({e:nom}, "", "#"+nom); pile++;
+    afficher(nom);
+  }
+  function retour(cible){
+    if(pile > 0) history.back();
+    else { history.replaceState(null, "", "#"+cible); afficher(cible); }
+  }
+  window.addEventListener("popstate", () => { pile = Math.max(0, pile-1); afficher(nomHash()); });
+
+  /* ---------- état de l'imprimante, recopié depuis la barre d'impression ---------- */
+  function miroir(){
+    const txt = $("etatTxt").textContent, sub = $("etatSub").textContent, cls = $("pastille").className;
+    const ok = /\bok\b/.test(cls);
+    qsa(".mir-txt").forEach(e => { e.textContent = ok ? "Imprimante connectée" : txt; });
+    qsa(".mir-sub").forEach(e => { e.textContent = sub || (ok ? "" : "Aucune imprimante mémorisée"); });
+    qsa(".mir-pastille").forEach(e => { e.className = cls + " mir-pastille"; });
+    qsa(".mir-etat").forEach(e => e.classList.toggle("ok", ok));
+    qsa(".mir-conn").forEach(b => { b.textContent = connecte() ? "Changer" : "Connecter"; b.disabled = !btDispo; });
+    qsa(".mir-actions").forEach(e => { e.hidden = !ok; });
+  }
+  qsa(".mir-test").forEach(b => b.addEventListener("click", () => $("btnTest").click()));
+  const obs = new MutationObserver(miroir);
+  obs.observe($("etatTxt"), {childList:true, characterData:true, subtree:true});
+  obs.observe($("etatSub"), {childList:true, characterData:true, subtree:true});
+  obs.observe($("pastille"), {attributes:true});
+
+  /* ---------- mise à jour après chaque rendu du script principal ---------- */
+  const NOMS_MODELE = {B:"Bandeau", Q:"QR agrandi"};
+  function maj(E){
+    $("apDim").textContent = "Étiquette " + E.larg + " × " + E.haut + " mm";
+    $("apLarg").textContent = E.larg + " mm";
+    $("hModele").textContent = (NOMS_MODELE[E.modele] || E.modele) + " · " + E.larg + " × " + E.haut + " mm";
+    const nb = Object.keys(S.histo || {}).length;
+    $("hNbDossiers").textContent = nb ? nb + " dossier" + (nb>1?"s":"") + " enregistré" + (nb>1?"s":"") : "Numéros déjà imprimés";
+    const n1 = Math.min(E.debut, E.fin), n2 = Math.max(E.debut, E.fin);
+    $("hReprise").hidden = !(E.poi || E.prefixe);
+    $("hDossier").textContent = [E.prefixe, E.poi].filter(Boolean).join(" · ") || "—";
+    $("hRef").textContent = E.ref + " · n° " + n1 + (n2 > n1 ? " à " + n2 : "");
+    qsa(".modele").forEach(b => { const on = b.dataset.modele === E.modele; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); });
+    if(courant === "modeles") dessinerModeles(E);
+    if(courant === "etiquettes") liste();
+    miroir();
+  }
+
+  // Aperçu des deux modèles avec les données en cours : appel direct au générateur d'origine.
+  function dessinerModeles(E){
+    const n = Math.min(E.debut, E.fin);
+    for(const m of ["B","Q"]){
+      const box = $("vis"+m);
+      try{ const r = etiquette(Object.assign({}, E, {modele:m}), n); box.textContent = ""; box.appendChild(r.cv); }
+      catch(e){ box.textContent = "—"; }
+    }
+  }
+
+  /* ---------- mes étiquettes : numéros enregistrés par dossier et référence ---------- */
+  const dateFr = t => new Date(t).toLocaleString("fr-FR", {day:"2-digit", month:"2-digit", year:"numeric", hour:"2-digit", minute:"2-digit"});
+  function decoupe(cle){ const i = cle.indexOf("|"); return {poi:cle.slice(0,i), ref:cle.slice(i+1)}; }
+  function liste(){
+    const histo = S.histo || {}, dates = S.dates || {};
+    const toutes = Object.keys(histo);
+    const q = $("recherche").value.trim().toUpperCase();
+    const cles = toutes.filter(k => !q || k.toUpperCase().includes(q))
+      .sort((a,b) => (dates[b]||0) - (dates[a]||0) || a.localeCompare(b));
+    let html;
+    if(!toutes.length){
+      html = '<div class="carte vide"><span class="chip bleu">'+uico("liste","lg")+'</span><b>Aucun numéro enregistré</b>'
+        + 'Après une impression, le dossier et le dernier numéro sorti apparaissent ici.'
+        + '<div class="btnrow" style="justify-content:center"><button class="btn or" type="button" data-aller="creer" style="flex:0 1 auto">'+uico("creer","sm")+'Créer une étiquette</button></div></div>';
+    } else if(!cles.length){
+      html = '<div class="carte vide"><b>Aucun résultat</b>Aucun dossier ne correspond à « '+esc($("recherche").value.trim())+' ».</div>';
+    } else {
+      html = cles.map(k => {
+        const {poi, ref} = decoupe(k), der = histo[k];
+        return '<div class="carte lot"><div class="lot-n" aria-hidden="true"><small>DERNIER</small><b>'+esc(der)+'</b></div>'
+          + '<div class="lot-txt"><b>'+esc(poi)+'</b><span class="r">'+esc(ref)+'</span>'
+          + '<small>n° 1 à '+esc(der)+(dates[k] ? ' · '+dateFr(dates[k]) : '')+'</small></div>'
+          + '<div class="lot-act"><button class="btn sm or" type="button" data-reprendre="'+esc(k)+'">Reprendre</button>'
+          + '<button class="ico-btn" type="button" data-effacer="'+esc(k)+'" aria-label="Effacer '+esc(poi)+' '+esc(ref)+'">'+uico("poubelle","sm")+'</button></div></div>';
+      }).join("");
+    }
+    poser("liste", html);
+  }
+  // Reprendre : remet le dossier et la référence, puis utilise le bouton d'origine « Reprendre au n° ».
+  function reprendre(cle){
+    const {poi, ref} = decoupe(cle), p = ref.split("/");
+    $("poi").value = poi === "—" ? "" : poi;
+    if(p.length === 3){
+      const a = (id, v) => Array.from($(id).options).some(o => o.value === v);
+      if(SERIES.includes(p[0])) $("serie").value = p[0]; else { $("serie").value = "autre"; $("serieAutre").value = p[0]; }
+      if(a("capa", p[1])) $("capa").value = p[1];
+      if(a("cal", p[2])) $("cal").value = p[2];
+    }
+    rendre();
+    const b = $("btnSuite"); if(b) b.click();
+    aller("creer");
+  }
+  function effacer(cle){
+    const {poi, ref} = decoupe(cle);
+    if(!confirm("Effacer les numéros déjà imprimés pour " + poi + " · " + ref + " ?")) return;
+    delete S.histo[cle]; if(S.dates) delete S.dates[cle];
+    sauver(); rendre();
+  }
+
+  /* ---------- panneau d'impression ---------- */
+  const IMP = {ouvert:false, total:0, envoyes:0, etape:""};
+  const ARC = 351.86;
+  function arc(frac){ $("impArc").setAttribute("stroke-dashoffset", String(ARC * (1 - Math.max(0, Math.min(1, frac))))); }
+  function etapeCls(id, cls){ $(id).className = cls || ""; const pt = $(id).querySelector(".pt");
+    pt.innerHTML = cls === "ok" ? uico("coche","sm") : cls === "err" ? uico("croix","sm") : ""; }
+  function dessiner(cv){
+    if(!cv) return;
+    const c = $("impToile"); c.width = cv.width; c.height = cv.height;
+    c.getContext("2d").drawImage(cv, 0, 0);
+  }
+  function journal(){ return JOURNAL.length ? JOURNAL.join("\n") : "Aucun échange avec l'imprimante pour l'instant."; }
+
+  const UI = {
+    maj, aller, uico, ecran: () => courant,
+    etape(phase, k, n, cv, lib){
+      if(phase === "connexion"){
+        IMP.ouvert = true; IMP.total = n; IMP.envoyes = 0; IMP.etape = "stConn";
+        $("impLib").textContent = lib === "essai" ? "Étiquette d'essai" : lib === "calibrage" ? "Étiquette de calibrage"
+          : n + " étiquette" + (n>1?"s":"") + " · réf. " + (lib || "");
+        $("impTitre").textContent = "Connexion à l'imprimante…";
+        $("impSous").textContent = "La M220 doit être allumée et à proximité.";
+        $("impPct").textContent = "0"; $("impPctSous").textContent = "sur " + n;
+        $("impAnneau").className = "anneau att"; arc(.25);
+        etapeCls("stConn","cours"); etapeCls("stEnvoi",""); etapeCls("stFin",""); $("stEnvoiN").textContent = "";
+        $("impRes").textContent = ""; $("impFermer").hidden = true;
+        dessiner(cv);
+        $("impression").hidden = false;
+      } else if(phase === "envoi"){
+        IMP.etape = "stEnvoi";
+        etapeCls("stConn","ok"); etapeCls("stEnvoi","cours");
+        $("stEnvoiN").textContent = (k+1) + " / " + n;
+        $("impTitre").textContent = "Envoi en cours…";
+        $("impSous").textContent = "Étiquette " + (k+1) + " sur " + n;
+        $("impAnneau").className = "anneau"; arc(k / n);
+        dessiner(cv);
+      }
+    },
+    envoye(j, n){
+      IMP.envoyes = j; $("impPct").textContent = String(j); arc(j / n);
+    },
+    fin(err){
+      if(!IMP.ouvert) return;
+      $("impFermer").hidden = false; $("impAnneau").className = "anneau";
+      const res = $("impRes");
+      if(err && err.name === "NotFoundError"){
+        etapeCls("stConn","");
+        $("impTitre").textContent = "Aucune imprimante choisie"; $("impSous").textContent = "";
+        res.innerHTML = '<div class="res warn"><b>Rien n\'a été envoyé</b>La liste Bluetooth a été fermée sans choisir d\'imprimante.</div>';
+        arc(0);
+      } else if(err){
+        etapeCls(IMP.etape, "err"); $("impAnneau").className = "anneau err";
+        $("impTitre").textContent = "Impression interrompue";
+        $("impSous").textContent = IMP.envoyes + " étiquette" + (IMP.envoyes>1?"s":"") + " sur " + IMP.total + " envoyée" + (IMP.envoyes>1?"s":"");
+        res.innerHTML = '<div class="res stop"><b>'+(IMP.etape === "stConn" ? "Connexion impossible" : "Erreur pendant l'envoi")+'</b>'
+          + esc((err && err.message) || String(err))
+          + '<details><summary>Détails techniques</summary><div class="journal">'+esc(journal())+'</div></details></div>';
+      } else if(IMP.envoyes < IMP.total){
+        etapeCls("stEnvoi","ok");
+        $("impTitre").textContent = "Impression arrêtée";
+        $("impSous").textContent = IMP.envoyes + " étiquette" + (IMP.envoyes>1?"s":"") + " sur " + IMP.total + " envoyée" + (IMP.envoyes>1?"s":"");
+        res.innerHTML = '<div class="res warn"><b>Arrêt demandé</b>Seuls les numéros réellement envoyés sont enregistrés. L\'étiquette en cours se termine toujours.</div>';
+      } else {
+        etapeCls("stConn","ok"); etapeCls("stEnvoi","ok"); etapeCls("stFin","ok"); arc(1);
+        $("impTitre").textContent = "Envoi terminé";
+        $("impSous").textContent = IMP.total + " étiquette" + (IMP.total>1?"s":"") + " transmise" + (IMP.total>1?"s":"") + " à l'imprimante";
+        res.innerHTML = '<div class="res ok"><b>Données transmises</b>La M220 ne renvoie pas de confirmation d\'impression : vérifiez que les étiquettes sont bien sorties et que le QR se lit.</div>';
+      }
+      $("journal").textContent = journal();
+      const pan = document.querySelector("#impression .m-pan"); pan.scrollTop = pan.scrollHeight;   // résultat visible
+    }
+  };
+  window.UI = UI;
+
+  function fermerImpression(){
+    if(occupe) return;
+    IMP.ouvert = false; $("impression").hidden = true;
+    poser("btAlerte", "");          // le panneau a déjà affiché le résultat
+    rendre();
+  }
+
+  /* ---------- copie du contenu du QR ---------- */
+  async function copier(){
+    const el = $("sortieId").querySelector(".contenu"); if(!el) return;
+    const t = el.textContent, b = $("btnCopier");
+    let ok = false;
+    try{ await navigator.clipboard.writeText(t); ok = true; }
+    catch(e){
+      try{ const ta = document.createElement("textarea"); ta.value = t; ta.setAttribute("readonly",""); ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); ta.remove(); }catch(e2){}
+    }
+    b.innerHTML = ok ? uico("coche","sm") + "Copié" : "Copie impossible";
+    b.classList.toggle("copie-ok", ok);
+    setTimeout(() => { b.innerHTML = uico("copier","sm") + "Copier"; b.classList.remove("copie-ok"); }, 1600);
+  }
+
+  /* ---------- clics de l'interface ---------- */
+  document.addEventListener("click", e => {
+    const t = e.target.closest("button"); if(!t) return;
+    if(t.dataset.aller){ aller(t.dataset.aller); return; }
+    if(t.dataset.retour){ retour(t.dataset.retour); return; }
+    if(t.dataset.action === "connecter"){ $("btnConn").click(); return; }
+    if(t.dataset.modele){ $("modele").value = t.dataset.modele; rendre(); return; }
+    if(t.dataset.reprendre){ reprendre(t.dataset.reprendre); return; }
+    if(t.dataset.effacer){ effacer(t.dataset.effacer); return; }
+    if(t.id === "btnCopier"){ copier(); return; }
+    if(t.id === "impFermer"){ fermerImpression(); return; }
+    if(t.id === "btnStop" && IMP.ouvert){ $("impTitre").textContent = "Arrêt après l'étiquette en cours…"; return; }
+  });
+  $("detTech").addEventListener("toggle", () => { if($("detTech").open) $("journal").textContent = journal(); });
+
+  // Le clavier ne cache pas le champ en cours de saisie.
+  document.addEventListener("focusin", e => {
+    if(e.target.matches && e.target.matches("input")) setTimeout(() => {
+      try{ e.target.scrollIntoView({block:"center", behavior:"smooth"}); }catch(x){}
+    }, 280);
+  });
+
+  afficher(nomHash());
+})();
+</script>
+<script src="config.js"></script>
+<script>
+/* ===================================================================
+   Version équipe — registre commun des QR (Supabase).
+   Les numéros restent ceux saisis par le technicien (n° de POI Orange,
+   Du n° / Au n°). Le registre vérifie seulement qu'un QR ne sort qu'une fois :
+     · en ligne  : les numéros sont pris au registre AVANT l'impression ;
+                   si l'un d'eux est déjà imprimé ailleurs, rien ne s'imprime ;
+     · hors ligne : l'impression est permise ; au retour du réseau, un doublon
+                   éventuel déclenche une alerte (technicien + responsable).
+   Ce script ne dessine pas les étiquettes et ne parle pas à l'imprimante.
+   =================================================================== */
+"use strict";
+(function(){
+  const CFG = window.ETQ_CONFIG || {};
+  const CONFIG_OK = /^https:\/\/[^/]+/.test(CFG.url || "") && String(CFG.cle || "").length > 20
+    && !/VOTRE-PROJET|COLLEZ-ICI/.test(String(CFG.url) + String(CFG.cle));
+  const URL_API = String(CFG.url || "").replace(/\/+$/, "");
+  const CLE_EQ = "etq_equipe_v2";
+  const ui = (n, c) => UI.uico(n, c);
+  const norm = t => String(t == null ? "" : t).trim().replace(/\s+/g, "").toUpperCase();
+  const cle = (poi, ref) => norm(poi) + "|" + String(ref || "").trim();
+  const heure = t => new Date(t).toLocaleTimeString("fr-FR", {hour:"2-digit", minute:"2-digit"});
+  const date = t => t ? new Date(t).toLocaleString("fr-FR", {day:"2-digit", month:"2-digit", year:"numeric", hour:"2-digit", minute:"2-digit"}) : "";
+  const trier = a => Array.from(new Set(a)).sort((x, y) => x - y);
+  const plages = a => { const t = trier(a), out = []; for(const n of t){ const l = out[out.length-1]; if(l && n === l[1]+1) l[1] = n; else out.push([n, n]); } return out; };
+  const txtPlages = a => plages(a).map(([x, y]) => x === y ? "n° " + x : "n° " + x + "–" + y).join(", ");
+
+  /* ---------- état local (ce téléphone) ---------- */
+  let Q = {session:null, profil:null, appareil:"", file:[], dossiers:{}, liste:[], importe:{}, alertes:[], vu:0};
+  try{ const v = LS && LS.getItem(CLE_EQ); if(v) Q = Object.assign(Q, JSON.parse(v)); }catch(e){}
+  if(!Q.appareil) Q.appareil = (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
+    : "app-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 10);
+  const sauverEq = () => { try{ if(LS) LS.setItem(CLE_EQ, JSON.stringify(Q, (k, v) => k === "ecouteur" ? undefined : v)); }catch(e){} };
+  // Historique local d'AVANT la version équipe, figé au premier lancement : les impressions
+  // faites ensuite passent par le registre et ne doivent pas être réimportées.
+  if(!Q.histoAvant) Q.histoAvant = JSON.parse(JSON.stringify(S.histo || {}));
+  sauverEq();
+  const uid = () => Q.session && Q.session.user_id;
+  const maFile = () => Q.file.filter(x => x.user === uid());
+  let enLigne = navigator.onLine !== false, enCours = false, encore = false;
+
+  /* ---------- API Supabase (fetch direct, sans dépendance) ---------- */
+  class ErrReseau extends Error {}
+  class ErrSession extends Error {}
+  async function http(chemin, corps, jeton){
+    let r;
+    try{
+      const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 15000);
+      r = await fetch(URL_API + chemin, {method:"POST", signal:ctl.signal,
+        headers:{"apikey":CFG.cle, "Content-Type":"application/json", "Authorization":"Bearer " + (jeton || CFG.cle)},
+        body: JSON.stringify(corps || {})});
+      clearTimeout(to);
+    }catch(e){ enLigne = false; throw new ErrReseau("Pas de réseau"); }
+    enLigne = true;
+    const txt = await r.text(); let j = null;
+    try{ j = txt ? JSON.parse(txt) : null; }catch(e){}
+    if(!r.ok){
+      const msg = (j && (j.message || j.msg || j.error_description || j.error)) || ("Erreur " + r.status);
+      const e = (r.status === 401 || (j && j.code === "PGRST301")) ? new ErrSession(msg) : new Error(msg);
+      e.status = r.status; throw e;
+    }
+    return j;
+  }
+  function garderSession(j){
+    Q.session = {access_token:j.access_token, refresh_token:j.refresh_token,
+      expire:Date.now() + (j.expires_in || 3600)*1000, user_id:j.user && j.user.id, email:j.user && j.user.email};
+    sauverEq();
+  }
+  async function jeton(){
+    if(!Q.session) throw new ErrSession("Non connecté");
+    if(Q.session.expire - 60000 > Date.now()) return Q.session.access_token;
+    try{ garderSession(await http("/auth/v1/token?grant_type=refresh_token", {refresh_token:Q.session.refresh_token})); }
+    catch(e){ if(e instanceof ErrReseau) throw e; finSession("Session expirée : reconnectez-vous."); throw new ErrSession(e.message); }
+    return Q.session.access_token;
+  }
+  async function rpc(fn, args){
+    let t = await jeton();
+    try{ return await http("/rest/v1/rpc/" + fn, args, t); }
+    catch(e){
+      if(!(e instanceof ErrSession) || !Q.session) throw e;
+      Q.session.expire = 0; t = await jeton();             // jeton refusé : un rafraîchissement, puis abandon
+      return http("/rest/v1/rpc/" + fn, args, t);
+    }
+  }
+  function finSession(msg){ Q.session = null; Q.profil = null; sauverEq(); afficherConnexion(msg); }
+
+  /* ---------- synchronisation ---------- */
+  async function synchro(){
+    if(!CONFIG_OK || !Q.session) return;
+    if(enCours){ encore = true; return; }
+    enCours = true;
+    let nouvelles = 0;
+    try{
+      // 1. impressions en attente → registre (dans l'ordre)
+      for(const it of maFile()){
+        if(it.type === "confirmer"){
+          await rpc("etq_confirmer", {p_poi:it.poi, p_ref:it.ref, p_imprimes:it.imprimes, p_rendus:it.rendus,
+            p_appareil:Q.appareil, p_prefixe:it.prefixe, p_qr:it.qr, p_le:new Date(it.le).toISOString()});
+        } else {
+          const r = await rpc("etq_hors_ligne", {p_poi:it.poi, p_ref:it.ref, p_numeros:it.numeros, p_appareil:Q.appareil,
+            p_prefixe:it.prefixe, p_qr:it.qr, p_le:new Date(it.le).toISOString()});
+          it.doublons = (r && r.doublons) || [];
+        }
+        Q.file = Q.file.filter(x => x !== it); sauverEq();
+        if(it.ecouteur) it.ecouteur(it);
+      }
+      // 2. historique imprimé avant la version équipe (une fois par compte et téléphone)
+      if(!Q.importe[uid()]){
+        const ent = Object.entries(Q.histoAvant || {}).map(([k, d]) => { const i = k.indexOf("|"); return {poi:k.slice(0, i), ref:k.slice(i+1), dernier:d}; })
+          .filter(e => e.poi && e.poi !== "—");
+        await rpc("etq_importer", {p_entrees:ent, p_appareil:Q.appareil});
+        Q.importe[uid()] = Date.now(); sauverEq();
+      }
+      // 3. profil, alertes, dossier en cours, liste
+      Q.profil = await rpc("etq_session", {});
+      const al = await rpc("etq_mes_alertes", {}) || [];
+      const connues = new Set(Q.alertes.map(a => a.id));
+      nouvelles = al.filter(a => !connues.has(a.id)).length;
+      Q.alertes = al;
+      await etatDossier(true);
+      Q.liste = await rpc("etq_mes_dossiers", {p_limite:100}) || [];
+      Q.vu = Date.now(); sauverEq();
+    }catch(e){
+      if(!(e instanceof ErrReseau) && !(e instanceof ErrSession)) alerteEq("stop", "Registre commun", esc(e.message));
+    }finally{
+      rafraichir();
+      if(nouvelles) alerteDoublon();
+      enCours = false;
+      if(encore){ encore = false; await synchro(); }       // relance immédiate, sans intervalle « libre »
+    }
+  }
+  async function etatDossier(force){
+    const E = lire(), k = cle(E.poi, E.ref);
+    if(!norm(E.poi) || !Q.session) return;
+    const d = Q.dossiers[k];
+    if(!force && d && Date.now() - d.le < 20000) return;
+    try{ const r = await rpc("etq_etat_dossier", {p_poi:E.poi, p_ref:E.ref});
+      Q.dossiers[k] = {pris:r.pris || [], techniciens:r.techniciens || 0, le:Date.now()}; sauverEq(); }
+    catch(e){}
+    rafraichir();
+  }
+  let minuteur = null;
+  const etatDossierPlusTard = () => { clearTimeout(minuteur); minuteur = setTimeout(() => etatDossier(false), 700); };
+
+  /* ---------- contrôle de la plage choisie ---------- */
+  function plage(E){ const a = Math.min(E.debut, E.fin), b = Math.max(E.debut, E.fin), t = []; for(let n = a; n <= b && t.length <= 500; n++) t.push(n); return t; }
+  function controle(E){
+    const d = Q.dossiers[cle(E.poi, E.ref)];
+    if(!d) return {connu:false, deja:[], suite:null};
+    const pris = new Set(d.pris), nums = plage(E);
+    return {connu:true, d, deja:nums.filter(n => pris.has(n)), suite:d.pris.length ? Math.max(...d.pris) + 1 : null};
+  }
+
+  function majEquipe(E){
+    if(Q.profil && Q.profil.prefixe){ if($("prefixe").value !== Q.profil.prefixe) $("prefixe").value = Q.profil.prefixe; $("prefixe").readOnly = true; }
+    else $("prefixe").readOnly = false;
+    etatDossierPlusTard(); rafraichir();
+  }
+
+  /* ---------- encarts ---------- */
+  function alerteEq(cls, titre, html){
+    poser("btAlerte", '<div class="verdict ' + cls + '"><b>' + esc(titre) + '</b><ul><li>' + html + '</li></ul></div>');
+  }
+  function alerteDoublon(){
+    const a = Q.alertes[0]; if(!a) return;
+    alerteEq("stop", "DOUBLON détecté", esc(a.poi + " · " + a.ref + " · n° " + a.numero) + " imprimé hors ligne, alors que "
+      + esc(a.autre_nom || "un collègue") + " l'avait déjà imprimé" + (a.autre_le ? " (" + esc(date(a.autre_le)) + ")" : "")
+      + ". Retirez l'une des deux étiquettes et prévenez votre responsable.");
+    try{ navigator.vibrate && navigator.vibrate([200, 100, 200]); }catch(e){}
+  }
+  function carteAlertes(){
+    if(!Q.alertes.length) return "";
+    return '<div class="verdict stop eq-alertes"><b>' + Q.alertes.length + ' doublon' + (Q.alertes.length>1?'s':'') + ' à traiter</b><ul>'
+      + Q.alertes.slice(0, 5).map(a => '<li><span class="mono">' + esc(a.qr_texte || (a.poi + "-" + a.ref + "-" + a.numero)) + '</span> : imprimé hors ligne le ' + esc(date(a.imprime_le))
+        + ', déjà imprimé par ' + esc(a.autre_nom || "un collègue") + (a.autre_le ? ' le ' + esc(date(a.autre_le)) : '') + '.</li>').join("")
+      + '</ul><p class="note" style="margin-top:6px">Retirez l\'une des deux étiquettes. Le responsable voit aussi ces doublons.</p>'
+      + '<div class="btnrow"><button class="btn sm" type="button" data-eq="vues">J\'ai traité</button></div></div>';
+  }
+  function rafraichir(){
+    if(!document.getElementById("eqNum")) return;
+    const E = lire(), co = !!Q.session, c = controle(E), nums = plage(E);
+    const p = nums.length === 1 ? "n° " + nums[0] : "n° " + nums[0] + " à " + nums[nums.length-1];
+    let h = "";
+    if(!norm(E.poi)) h = '<div class="verdict warn"><b>Saisissez le n° de POI</b><ul><li>Le registre contrôle chaque QR par POI, référence et numéro.</li></ul></div>';
+    else {
+      if(c.deja.length) h = '<div class="verdict stop"><b>Déjà imprimés : ' + esc(txtPlages(c.deja)) + '</b><ul><li>Impression bloquée : ces QR existent déjà dans le registre de l\'équipe.</li></ul>';
+      else if(c.connu) h = '<div class="verdict ok"><b>' + p + ' : libres</b><ul><li>Registre consulté à ' + heure(c.d.le) + '. Contrôle définitif au moment d\'imprimer.</li></ul>';
+      else h = '<div class="verdict' + (enLigne && co ? '' : ' warn') + '"><b>' + p + '</b><ul><li>' + (enLigne && co ? 'Contrôle au registre au moment d\'imprimer.' : 'Hors ligne et dossier jamais consulté : contrôle au retour du réseau.') + '</li></ul>';
+      if(c.connu && c.d.pris.length) h += '<p class="note" style="margin-top:8px">Déjà imprimés pour ce POI et ce câble : ' + esc(txtPlages(c.d.pris))
+        + (c.d.techniciens > 1 ? ' (' + c.d.techniciens + ' techniciens)' : '') + '.</p>';
+      if(c.suite && E.debut !== c.suite) h += '<div class="btnrow"><button class="btn sm" type="button" data-eq="suite" data-n="' + c.suite + '">Reprendre au n° ' + c.suite + '</button></div>';
+      h += '</div>';
+      if(co && !enLigne) h += '<p class="note">Hors ligne : l\'impression reste possible ; un doublon éventuel sera signalé au retour du réseau.</p>';
+    }
+    poser("eqNum", carteAlertes() + h);
+    const nf = maFile().length;
+    const st = co ? (enLigne ? "En ligne" : "Hors ligne") : "Déconnecté";
+    poser("eqStatut", '<span class="pastille ' + (co && enLigne ? "ok" : "att") + '"></span><span>' + st + (Q.profil ? ' · ' + esc(Q.profil.nom) : '') + '</span>'
+      + (nf ? '<span class="eq-badge">' + nf + ' à synchroniser</span>' : '')
+      + (Q.alertes.length ? '<span class="eq-badge rouge">' + Q.alertes.length + ' doublon' + (Q.alertes.length>1?'s':'') + '</span>' : ''));
+    poser("eqAccueil", carteAlertes());
+    poser("eqCompte", co
+      ? '<span class="chip bleu">' + ui("accueil") + '</span><div class="txt"><div class="eyebrow">Compte</div><b>' + esc((Q.profil && Q.profil.nom) || Q.session.email || "") + '</b>'
+        + '<span class="sub">' + (enLigne ? 'Registre commun' + (Q.vu ? ' · synchronisé à ' + heure(Q.vu) : '') : 'Hors ligne · ' + nf + ' impression' + (nf>1?'s':'') + ' en attente') + '</span></div>'
+        + '<button class="btn sm" type="button" data-eq="deconnexion">Déconnexion</button>'
+      : '');
+    const nl = (Q.liste || []).length;
+    $("hNbDossiers").textContent = co ? (nl ? nl + " dossier" + (nl>1?"s":"") + " au registre" : "Registre commun") : "Connexion requise";
+    if(UI.ecran() === "etiquettes") listeEquipe();
+  }
+
+  /* ---------- Mes étiquettes ---------- */
+  function listeEquipe(){
+    const q = ($("recherche").value || "").trim().toUpperCase();
+    let h = carteAlertes();
+    const f = maFile();
+    if(f.length) h += '<div class="eq-titre">En attente de synchronisation</div>' + f.map(it => {
+      const nums = it.type === "confirmer" ? it.imprimes : it.numeros;
+      return '<div class="carte lot"><div class="lot-n att"><small>ATTENTE</small><b>' + nums.length + '</b></div><div class="lot-txt"><b>' + esc(it.poi) + '</b><span class="r">' + esc(it.ref) + '</span><small>'
+        + esc(nums.length ? txtPlages(nums) : "aucun n° sorti") + (it.type === "hors_ligne" ? ' · imprimés hors ligne, contrôle à venir' : '') + '</small></div></div>'; }).join("");
+    const L = (Q.liste || []).filter(it => !q || (it.poi + "|" + it.ref).toUpperCase().includes(q));
+    h += '<div class="eq-titre">Mes impressions</div>';
+    h += L.length ? L.map(it =>
+      '<div class="carte lot"><div class="lot-n" aria-hidden="true"><small>DERNIER</small><b>' + esc(it.dernier_equipe) + '</b></div>'
+      + '<div class="lot-txt"><b>' + esc(it.poi) + '</b><span class="r">' + esc(it.ref) + '</span>'
+      + '<small>Vous : ' + esc(txtPlages(it.mes_numeros || [])) + '</small>'
+      + '<small>Équipe : ' + esc(it.total_equipe) + ' QR · ' + esc(date(it.derniere)) + '</small></div>'
+      + '<div class="lot-act"><button class="btn sm or" type="button" data-eq-ouvrir="' + esc(cle(it.poi, it.ref)) + '">Ouvrir</button></div></div>').join("")
+      : '<div class="carte vide"><b>' + (q ? 'Aucun résultat' : 'Aucune impression enregistrée') + '</b>' + (q ? '' : 'Vos impressions enregistrées au registre commun apparaissent ici.') + '</div>';
+    poser("eqListe", h);
+  }
+  function ouvrir(k){
+    const i = k.indexOf("|"), p = k.slice(i+1).split("/");
+    $("poi").value = k.slice(0, i);
+    if(p.length === 3){
+      const a = (id, v) => Array.from($(id).options).some(o => o.value === v);
+      if(SERIES.includes(p[0])) $("serie").value = p[0]; else { $("serie").value = "autre"; $("serieAutre").value = p[0]; }
+      if(a("capa", p[1])) $("capa").value = p[1];
+      if(a("cal", p[2])) $("cal").value = p[2];
+    }
+    rendre(); etatDossier(true); UI.aller("creer");
+  }
+  function suiteAu(n){
+    const span = Math.abs((ent($("fin").value) || 1) - (ent($("debut").value) || 1)) + 1;
+    $("debut").value = n; $("fin").value = n + span - 1; rendre();
+  }
+
+  /* ---------- impression : contrôle au registre, puis bouton d'origine ---------- */
+  let PASSE = false, PEND = null, CUR = null;
+  const ligneConflit = c => "n° " + c.numero + (c.moi ? " : déjà imprimé par vous" : " : " + (c.statut === "en_cours" ? "en cours d'impression" : "imprimé") + " par " + (c.par || "un collègue"))
+    + (c.le ? " le " + date(c.le) : "");
+  async function imprimerEquipe(){
+    if(occupe || PEND) return;
+    if(!Q.session){ afficherConnexion(); return; }
+    const E = lire(), k = cle(E.poi, E.ref), nums = plage(E);
+    if(!norm(E.poi)){ alerteEq("stop", "N° de POI manquant", "Saisissez le n° de POI avant d'imprimer."); return; }
+    if(nums.length > 500){ alerteEq("stop", "Plage trop grande", "500 numéros au plus par impression."); return; }
+    let mode = "en_ligne";
+    etat("Contrôle au registre…", "registre commun", "att");
+    try{
+      const r = await rpc("etq_prendre", {p_poi:E.poi, p_ref:E.ref, p_numeros:nums, p_appareil:Q.appareil});
+      if(!r.ok){
+        majEtat();
+        const d = Q.dossiers[k] = Q.dossiers[k] || {pris:[], techniciens:0, le:Date.now()};
+        d.pris = trier(d.pris.concat(r.conflits.map(c => c.numero))); sauverEq();
+        alerteEq("stop", "Impression bloquée : QR déjà imprimé" + (r.conflits.length > 1 ? "s" : ""),
+          r.conflits.slice(0, 6).map(c => esc(ligneConflit(c))).join("</li><li>") + (r.conflits.length > 6 ? "</li><li>…" : "") + "</li><li>Rien n'a été imprimé.");
+        etatDossier(true); return;
+      }
+    }catch(e){
+      if(!(e instanceof ErrReseau)){ majEtat(); alerteEq("stop", "Registre commun", esc(e.message) + " — rien n'a été imprimé."); return; }
+      mode = "hors_ligne";
+      const c = controle(E);
+      if(c.deja.length){ majEtat(); alerteEq("stop", "Impression bloquée : déjà imprimés", esc(txtPlages(c.deja)) + " figurent dans le registre (état connu à " + heure(c.d.le) + "). Rien n'a été imprimé."); return; }
+    }
+    majEtat();
+    PEND = {E, k, poi:E.poi, ref:E.ref, prefixe:E.prefixe, nums, mode};
+    PASSE = true; try{ $("btnImp").click(); } finally { PASSE = false; }
+    if(!occupe && PEND){                                     // impression non lancée (confirmation refusée)
+      if(PEND.mode === "en_ligne") fileAjout({type:"confirmer", imprimes:[], rendus:nums, qr:[]}, PEND);
+      PEND = null; synchro();
+    }
+  }
+  function fileAjout(it, P){
+    const x = Object.assign({user:uid(), poi:P.poi, ref:P.ref, prefixe:P.prefixe, le:Date.now()}, it);
+    Q.file.push(x); sauverEq(); return x;
+  }
+  function finImpression(){
+    if(!PEND){ CUR = null; return; }
+    const P = PEND; PEND = null;
+    const sortis = trier(((CUR && CUR.nums) || []).slice(0, CUR ? CUR.envoyes : 0).filter(n => n > 0 && P.nums.includes(n)));
+    CUR = null;
+    const qr = sortis.map(n => identifiant(P.E, n));
+    let it = null;
+    if(P.mode === "en_ligne") it = fileAjout({type:"confirmer", imprimes:sortis, rendus:P.nums.filter(n => !sortis.includes(n)), qr}, P);
+    else if(sortis.length) it = fileAjout({type:"hors_ligne", numeros:sortis, qr}, P);
+    if(sortis.length){
+      const d = Q.dossiers[P.k] = Q.dossiers[P.k] || {pris:[], techniciens:1, le:Date.now()};
+      d.pris = trier(d.pris.concat(sortis)); sauverEq();
+      const r = $("impRes");
+      if(r) r.insertAdjacentHTML("beforeend", '<div class="res" id="eqSync"><b>Registre commun</b>' + esc(txtPlages(sortis)) + ' : enregistrement…</div>');
+      if(it) it.ecouteur = x => {
+        const s = $("eqSync"); if(!s) return;
+        if(x.doublons && x.doublons.length){ s.className = "res stop"; s.innerHTML = '<b>DOUBLON</b>' + x.doublons.map(dd => esc("n° " + dd.numero + " déjà imprimé par " + (dd.autre_nom || "un collègue"))).join("<br>") + '<br>Retirez l\'une des deux étiquettes.'; }
+        else s.innerHTML = '<b>Registre commun</b>' + esc(txtPlages(sortis)) + ' : enregistrés.';
+      };
+    }
+    synchro().then(() => {
+      const s = $("eqSync");
+      if(s && it && Q.file.includes(it)) s.innerHTML = '<b>Registre commun</b>' + esc(txtPlages(sortis)) + (P.mode === "hors_ligne" ? ' : imprimés hors ligne, contrôle dès le retour du réseau.' : ' : envoi dès le retour du réseau.');
+    });
+    rendre();
+  }
+  const etape0 = UI.etape, envoye0 = UI.envoye, fin0 = UI.fin, maj0 = UI.maj;
+  UI.etape = function(phase, k, n, cv, lib, toiles){ if(phase === "connexion") CUR = {nums:(toiles && toiles.nums) || [], envoyes:0}; return etape0.apply(this, arguments); };
+  UI.envoye = function(j, n){ if(CUR) CUR.envoyes = j; return envoye0.apply(this, arguments); };
+  UI.fin = function(err){ const r = fin0.apply(this, arguments); finImpression(); return r; };
+  UI.maj = function(E){ const r = maj0.apply(this, arguments); majEquipe(E); return r; };
+  UI.apresEcran = nom => { if(nom === "etiquettes") listeEquipe(); rafraichir(); };
+
+  // Clics interceptés AVANT le script d'origine (phase de capture).
+  document.addEventListener("click", e => {
+    const t = e.target.closest("button"); if(!t) return;
+    if(t.id === "btnImp" && !PASSE){ e.stopImmediatePropagation(); e.preventDefault(); imprimerEquipe(); return; }
+    if(t.id === "btnTest"){                                   // essai : jamais un vrai QR de POI
+      e.stopImmediatePropagation(); e.preventDefault();
+      const E = lire(), Es = Object.assign({}, E, {prefixe:"ESSAI", poi:"NE PAS UTILISER"});
+      lancer(() => imprimerSerie([etiquette(Es, 0).cv], E, "essai")); return;
+    }
+    if(t.dataset.plage){                                      // « Utiliser » : à la suite du registre de l'équipe
+      const c = controle(lire());
+      if(c.suite){ e.stopImmediatePropagation(); const n = +t.dataset.plage; $("debut").value = c.suite; $("fin").value = c.suite + n - 1; rendre(); }
+    }
+  }, true);
+
+  document.addEventListener("click", async e => {
+    const t = e.target.closest("button"); if(!t) return;
+    if(t.dataset.eqOuvrir){ ouvrir(t.dataset.eqOuvrir); return; }
+    const a = t.dataset.eq; if(!a) return;
+    if(a === "suite"){ suiteAu(+t.dataset.n); return; }
+    if(a === "vues"){
+      const ids = Q.alertes.map(x => x.id);
+      try{ await rpc("etq_alertes_vues", {p_ids:ids}); Q.alertes = []; sauverEq(); poser("btAlerte", ""); }
+      catch(err){ alerteEq("stop", "Registre commun", err instanceof ErrReseau ? "Pas de réseau : réessayez une fois en ligne." : esc(err.message)); }
+      rafraichir(); return;
+    }
+    if(a === "deconnexion"){
+      const nf = maFile().length;
+      if(nf){ alerteEq("stop", "Impressions non synchronisées", nf + " impression(s) attendent le réseau. Déconnectez-vous une fois en ligne."); return; }
+      try{ await http("/auth/v1/logout", {}, Q.session.access_token); }catch(x){}
+      Q.liste = []; Q.alertes = []; finSession(""); return;
+    }
+  });
+
+  /* ---------- écran de connexion ---------- */
+  function afficherConnexion(msg){
+    const o = $("eqLogin"); if(!o) return;
+    o.hidden = false;
+    $("eqMsg").innerHTML = !CONFIG_OK
+      ? '<div class="verdict stop"><b>Configuration manquante</b><ul><li>Renseignez l\'adresse et la clé publique Supabase dans config.js (voir le guide d\'installation).</li></ul></div>'
+      : msg ? '<div class="verdict warn"><b>' + esc(msg) + '</b></div>' : "";
+    $("eqForm").hidden = !CONFIG_OK;
+  }
+  async function seConnecter(ev){
+    ev.preventDefault();
+    const id = $("eqId").value.trim(), mdp = $("eqMdp").value;
+    if(!id || !mdp) return;
+    const email = id.includes("@") ? id : id + "@" + (CFG.domaine || "etiquettes.local");
+    $("eqGo").disabled = true; $("eqMsg").innerHTML = "";
+    try{
+      garderSession(await http("/auth/v1/token?grant_type=password", {email, password:mdp}));
+      await rpc("etq_session", {});                           // vérifie que le compte est actif
+      $("eqMdp").value = ""; $("eqLogin").hidden = true;
+      synchro();
+    }catch(e){
+      const m = e instanceof ErrReseau ? "Pas de réseau : la première connexion doit se faire en ligne."
+        : /invalid/i.test(e.message) ? "Identifiant ou mot de passe incorrect." : e.message;
+      if(Q.session && !(e instanceof ErrReseau)){ Q.session = null; sauverEq(); }
+      $("eqMsg").innerHTML = '<div class="verdict stop"><b>Connexion refusée</b><ul><li>' + esc(m) + '</li></ul></div>';
+    }finally{ $("eqGo").disabled = false; }
+  }
+
+  /* ---------- mise en place ---------- */
+  document.body.classList.add("equipe");
+  $("plageNum").insertAdjacentHTML("afterend", '<div id="eqNum"></div>');
+  document.querySelector("#e-creer .barre p").textContent = "Contrôle par le registre commun";
+  document.querySelector('label[for="poi"]').textContent = "N° de POI";
+  document.querySelector(".hero").insertAdjacentHTML("beforeend", '<div class="eq-statut" id="eqStatut"></div>');
+  document.querySelector(".tuiles").insertAdjacentHTML("beforebegin", '<div id="eqAccueil"></div>');
+  document.querySelector("#hReprise").insertAdjacentHTML("afterend", '<div class="carte reprise" id="eqCompte"></div>');
+  $("liste").insertAdjacentHTML("afterend", '<div id="eqListe"></div>');
+  $("liste").hidden = true;
+  document.querySelector("#e-etiquettes .expl").textContent = "Registre commun : un même QR (POI + câble + n°) ne peut être imprimé qu'une fois dans l'équipe.";
+  document.querySelector("#e-etiquettes .barre p").textContent = "Registre commun de l'équipe";
+  $("btnTest").textContent = "Étiquette d'essai (QR « ESSAI »)";
+  document.body.insertAdjacentHTML("beforeend",
+    '<div id="eqLogin" hidden><div class="eq-login">'
+    + '<div class="logo">' + ico("etiquette") + '</div>'
+    + '<h1>Étiquettes Fagot <em>Équipe</em></h1><p>Connectez-vous avec le compte fourni par votre responsable.</p>'
+    + '<div id="eqMsg"></div>'
+    + '<form id="eqForm" autocomplete="on"><div class="field"><label for="eqId">Identifiant</label><input id="eqId" type="text" autocapitalize="none" autocomplete="username" spellcheck="false" required></div>'
+    + '<div class="field"><label for="eqMdp">Mot de passe</label><input id="eqMdp" type="password" autocomplete="current-password" required></div>'
+    + '<button class="btn or lg full" id="eqGo" type="submit">Se connecter</button></form>'
+    + '<p class="copy">© 2026 Aibid · Tous droits réservés</p></div></div>');
+  $("eqForm").addEventListener("submit", seConnecter);
+  $("eqLogin").addEventListener("input", e => e.stopPropagation());
+
+  window.addEventListener("online", () => { enLigne = true; synchro(); });
+  window.addEventListener("offline", () => { enLigne = false; rafraichir(); });
+  document.addEventListener("visibilitychange", () => { if(!document.hidden) synchro(); });
+  setInterval(() => { if(!document.hidden) synchro(); }, 60000);
+
+  if(!CONFIG_OK || !Q.session) afficherConnexion();
+  rendre();
+  synchro();
+  window.EQ = {etat: () => Q, synchro, occupe: () => enCours};   // diagnostic
+})();
+</script>
+<script>if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(function(){});</script>
+</html>
