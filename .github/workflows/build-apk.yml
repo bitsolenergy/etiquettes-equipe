@@ -1,0 +1,84 @@
+name: Build APK
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android build tools
+        run: sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Prepare TWA project
+        env:
+          KEY_PASSWORD: etiquettes-ci-ephemeral-2026
+        run: |
+          set -euo pipefail
+          mkdir -p twa
+          keytool -genkeypair -v \
+            -keystore twa/android-keystore \
+            -storepass "$KEY_PASSWORD" \
+            -keypass "$KEY_PASSWORD" \
+            -alias etiquettes \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname "CN=Etiquettes Equipe, OU=Mobile, O=bitsolenergy, C=FR"
+          printf '\n\nÉtiquettes fagot Équipe\nÉtiquettes\nfr.aibid.etiquettes.equipe\n1\n\n\n\n\n\n\n\n\nn\nn\ntwa/android-keystore\netiquettes\n' | \
+            npx --yes @bubblewrap/cli init \
+              --manifest="https://bitsolenergy.github.io/etiquettes-equipe/manifest.webmanifest" \
+              --directory=twa
+
+      - name: Build signed APK
+        env:
+          BUBBLEWRAP_KEYSTORE_PASSWORD: etiquettes-ci-ephemeral-2026
+          BUBBLEWRAP_KEY_PASSWORD: etiquettes-ci-ephemeral-2026
+        run: |
+          set -euo pipefail
+          cd twa
+          npx --yes @bubblewrap/cli build \
+            --skipPwaValidation \
+            --signingKeyPath=android-keystore \
+            --signingKeyAlias=etiquettes
+          cp app-release-signed.apk ../etiquettes-equipe.apk
+          keytool -list -v -keystore android-keystore \
+            -storepass "$BUBBLEWRAP_KEYSTORE_PASSWORD" -alias etiquettes \
+            | tee ../certificate.txt
+
+      - name: Generate Digital Asset Links
+        run: |
+          set -euo pipefail
+          FP=$(awk -F': ' '/SHA256:/{print $2; exit}' certificate.txt | tr -d ':')
+          mkdir -p .well-known
+          cat > .well-known/assetlinks.json <<EOF
+          [{"relation":["delegate_permission/common.handle_all_urls"],"target":{"namespace":"android_app","package_name":"fr.aibid.etiquettes.equipe","sha256_cert_fingerprints":["$FP"]}}]
+          EOF
+
+      - name: Upload APK and signing metadata
+        uses: actions/upload-artifact@v4
+        with:
+          name: etiquettes-equipe-apk
+          path: |
+            etiquettes-equipe.apk
+            .well-known/assetlinks.json
+            certificate.txt
+          if-no-files-found: error
