@@ -83,20 +83,24 @@ jobs:
             --directory=twa \
             --manifest=twa/twa-manifest.json
 
-      - name: Build signed APK
+      - name: Build and sign APK with Gradle
         env:
-          BUBBLEWRAP_KEYSTORE_PASSWORD: etiquettes-ci-ephemeral-2026
-          BUBBLEWRAP_KEY_PASSWORD: etiquettes-ci-ephemeral-2026
+          KEY_PASSWORD: etiquettes-ci-ephemeral-2026
         run: |
           set -euo pipefail
           cd twa
-          npx --yes @bubblewrap/cli build \
-            --skipPwaValidation \
-            --signingKeyPath=android-keystore \
-            --signingKeyAlias=etiquettes
-          cp app-release-signed.apk ../etiquettes-equipe.apk
+          chmod +x gradlew
+          ./gradlew assembleRelease --no-daemon --stacktrace
+          UNSIGNED=$(find app/build/outputs/apk/release -name '*unsigned*.apk' -o -name 'app-release.apk' | head -1)
+          test -n "$UNSIGNED"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" sign \
+            --ks android-keystore \
+            --ks-key-alias etiquettes \
+            --ks-pass pass:"$KEY_PASSWORD" \
+            --key-pass pass:"$KEY_PASSWORD" \
+            --out ../etiquettes-equipe.apk "$UNSIGNED"
           keytool -list -v -keystore android-keystore \
-            -storepass "$BUBBLEWRAP_KEYSTORE_PASSWORD" -alias etiquettes \
+            -storepass "$KEY_PASSWORD" -alias etiquettes \
             | tee ../certificate.txt
 
       - name: Generate Digital Asset Links
