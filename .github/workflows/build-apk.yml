@@ -44,10 +44,44 @@ jobs:
             -dname "CN=Etiquettes Equipe, OU=Mobile, O=bitsolenergy, C=FR"
           mkdir -p "$HOME/.bubblewrap"
           printf '{"jdkPath":"%s","androidSdkPath":"%s"}\n' "$JAVA_HOME" "$ANDROID_HOME" > "$HOME/.bubblewrap/config.json"
-          printf '\n\nÉtiquettes fagot Équipe\nÉtiquettes\nfr.aibid.etiquettes.equipe\n1\n\n\n\n\n\n\n\n\n\n\nn\nn\ntwa/android-keystore\netiquettes\n' | \
-            npx --yes @bubblewrap/cli init \
-              --manifest="https://bitsolenergy.github.io/etiquettes-equipe/manifest.webmanifest" \
-              --directory=twa
+          cat > twa/twa-manifest.json <<'EOF'
+          {
+            "packageId": "fr.aibid.etiquettes.equipe",
+            "host": "bitsolenergy.github.io",
+            "name": "Étiquettes fagot Équipe",
+            "launcherName": "Étiquettes",
+            "display": "standalone",
+            "themeColor": "#07111F",
+            "themeColorDark": "#07111F",
+            "navigationColor": "#07111F",
+            "navigationColorDark": "#07111F",
+            "navigationDividerColor": "#07111F",
+            "navigationDividerColorDark": "#07111F",
+            "backgroundColor": "#07111F",
+            "enableNotifications": false,
+            "startUrl": "/etiquettes-equipe/",
+            "fullScopeUrl": "https://bitsolenergy.github.io/etiquettes-equipe/",
+            "iconUrl": "https://bitsolenergy.github.io/etiquettes-equipe/icon-512.png",
+            "maskableIconUrl": "https://bitsolenergy.github.io/etiquettes-equipe/icon-512.png",
+            "splashScreenFadeOutDuration": 300,
+            "signingKey": {"path": "android-keystore", "alias": "etiquettes"},
+            "appVersionCode": 1,
+            "appVersion": "1.0.0",
+            "webManifestUrl": "https://bitsolenergy.github.io/etiquettes-equipe/manifest.webmanifest",
+            "minSdkVersion": 24,
+            "orientation": "portrait",
+            "fallbackType": "customtabs",
+            "enableSiteSettingsShortcut": true,
+            "isChromeOSOnly": false,
+            "isMetaQuest": false,
+            "shortcuts": [],
+            "additionalTrustedOrigins": []
+          }
+          EOF
+          npx --yes @bubblewrap/cli update \
+            --skipVersionUpgrade \
+            --directory=twa \
+            --manifest=twa/twa-manifest.json
 
       - name: Build signed APK
         env:
