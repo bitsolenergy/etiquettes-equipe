@@ -42,7 +42,9 @@ jobs:
             -alias etiquettes \
             -keyalg RSA -keysize 2048 -validity 10000 \
             -dname "CN=Etiquettes Equipe, OU=Mobile, O=bitsolenergy, C=FR"
-          printf '\n\nÉtiquettes fagot Équipe\nÉtiquettes\nfr.aibid.etiquettes.equipe\n1\n\n\n\n\n\n\n\n\nn\nn\ntwa/android-keystore\netiquettes\n' | \
+          mkdir -p "$HOME/.bubblewrap"
+          printf '{"jdkPath":"%s","androidSdkPath":"%s"}\n' "$JAVA_HOME" "$ANDROID_HOME" > "$HOME/.bubblewrap/config.json"
+          printf '\n\nÉtiquettes fagot Équipe\nÉtiquettes\nfr.aibid.etiquettes.equipe\n1\n\n\n\n\n\n\n\n\n\n\nn\nn\ntwa/android-keystore\netiquettes\n' | \
             npx --yes @bubblewrap/cli init \
               --manifest="https://bitsolenergy.github.io/etiquettes-equipe/manifest.webmanifest" \
               --directory=twa
